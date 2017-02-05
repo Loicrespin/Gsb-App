@@ -8,6 +8,7 @@ import java.util.HashMap;
 /**
  * Created by loic on 8/21/2015.
  */
+
 public class Event implements Parcelable {
 
     public static final String API_ID = "id";

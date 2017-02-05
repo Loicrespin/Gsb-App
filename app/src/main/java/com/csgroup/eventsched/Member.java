@@ -3,6 +3,7 @@ package com.csgroup.eventsched;
 /**
  * Created by pc on 8/24/2015.
  */
+
 public class Member {
     public static final String API_NAME = "name";
     public static final String API_EMAIL = "email";

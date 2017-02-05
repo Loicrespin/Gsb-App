@@ -43,6 +43,7 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         spinner.setAdapter(adapter);
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,6 +76,7 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         return super.onOptionsItemSelected(item);
     }
 
+    //Navigation menu slider
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
