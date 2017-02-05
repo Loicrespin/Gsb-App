@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:padding="10dp">
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="320dp"
+       android:layout_marginBottom="10dp">
+
+       <CalendarView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="@drawable/event_bg"></CalendarView>
+
+   </LinearLayout>
+
+
+    <!-- events fragment-->
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.csgroup.eventsched.EventsFragment"
+        android:id="@+id/events_fragment"
+        tools:layout="@layout/fragment_events" />
+
+
+</LinearLayout>

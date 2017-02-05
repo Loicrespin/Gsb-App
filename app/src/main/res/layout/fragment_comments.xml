@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.csgroup.eventsched.CommentsFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Comments"
+            android:id="@+id/textView33"
+            android:layout_marginBottom="10dp"
+            android:textColor="#ECF0F1"
+            android:textSize="15sp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold|italic" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="20dp"
+            android:weightSum="100">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:inputType="textMultiLine"
+                android:id="@+id/etCommentBody"
+                android:hint="Ajouter un commentaire"
+                android:background="@drawable/comment_box_bg"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="70"
+                android:textSize="15sp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="envoyer"
+                android:id="@+id/btnCommentSend"
+                android:background="#33FF66"
+                android:layout_weight="30"
+                android:textSize="16sp"
+                style="@style/DefaultButtonText"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview_comments" />
+
+</LinearLayout>

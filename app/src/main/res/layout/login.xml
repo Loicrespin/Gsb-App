@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/gradient"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Espace de Connexion"
+        android:id="@+id/textView"
+        android:gravity="center"
+        android:background="#E74C3C"
+        android:textColor="#ECF0F1"
+        android:textSize="20sp"
+        android:paddingTop="19dp"
+        android:paddingBottom="19dp"
+        android:layout_marginBottom="25dp" />
+
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="150dp"
+        android:background="@drawable/logogsbb"
+        android:layout_gravity="center"/>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="395dp"
+        android:weightSum="100"
+        android:layout_weight="0.48">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="25">
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="40dp"
+            android:layout_weight="50">
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:layout_marginTop="0dp"
+                android:padding="10dp"
+                android:hint="Email"
+                android:textColorHint="#bbbbbb"
+                android:layout_marginBottom="5dp"
+                android:textSize="15sp"
+                android:maxLines="1"/>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:layout_marginTop="-2dp"
+                android:padding="10dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColorHint="#bbbbbb"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember Me"
+                android:id="@+id/chkRemember"
+                android:textColor="#ECF0F1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="#ffff"
+                android:textSize="20sp"
+                android:shadowColor="#f9f9f9"
+                android:shadowDy="1"
+                android:shadowDx="1"
+                android:shadowRadius="1"
+                android:text="Valider"
+                android:textAllCaps="false"
+                android:background="#33FF66" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="25"></LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

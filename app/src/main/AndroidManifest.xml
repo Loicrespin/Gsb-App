@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.csgroup.eventsched">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".splashscreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".Agenda"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EventDetailsActivity"
+            android:label="@string/title_activity_event_details" />
+        <activity
+            android:name=".AddEventActivity"
+            android:label="@string/title_activity_add_event"
+            android:parentActivityName=".Agenda">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Agenda" />
+        </activity>
+
+        <service
+            android:name=".RetrieveNewEventsService"
+            android:exported="false" />
+
+        <activity
+            android:name=".CoordActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Calendrier" />
+    </application>
+
+</manifest>

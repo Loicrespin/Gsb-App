@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_agenda"
+            android:icon="@drawable/ic_storage_black_24dp"
+            android:title="@string/nav_agenda" />
+        <item
+            android:id="@+id/nav_coord"
+            android:icon="@drawable/ic_account_box_black_24dp"
+            android:title="@string/nav_coord" />
+        <item
+            android:id="@+id/nav_cpt"
+            android:icon="@drawable/ic_mode_edit_black_24dp"
+            android:title="@string/nav_cpt" />
+        <item
+            android:id="@+id/nav_medic"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="@string/nav_medic" />
+    </group>
+
+    <item android:title="Utilitaires">
+        <menu>
+            <item
+                android:id="@+id/nav_nav"
+                android:icon="@drawable/ic_near_me_black_24dp"
+                android:title="@string/nav_nav" />
+            <item
+                android:id="@+id/nav_loc"
+                android:icon="@drawable/ic_directions_car_black_24dp"
+                android:title="@string/nav_loc" />
+        </menu>
+    </item>
+
+</menu>
