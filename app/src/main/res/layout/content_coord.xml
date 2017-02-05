@@ -9,7 +9,7 @@
     tools:context="com.csgroup.eventsched.Agenda"
     tools:showIn="@layout/app_bar_coord">
 
-    <include layout="@layout/coord" />
+    <include layout="@layout/coord"/>
 
 
 </RelativeLayout>
