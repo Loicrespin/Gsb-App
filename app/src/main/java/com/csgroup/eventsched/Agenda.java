@@ -57,6 +57,7 @@ public class Agenda extends MenuActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        onPause();
     }
 
 
@@ -138,5 +139,10 @@ public class Agenda extends MenuActivity
             // stop service and clear preferences
             preferencesManager.logout();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

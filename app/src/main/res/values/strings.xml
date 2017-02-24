@@ -36,15 +36,4 @@
     <string name="coeff">Coefficient Notoriété : </string>
     <string name="lieux">Lieux exercice : </string>
 
-        <string-array name="planets_array">
-            <item>Mercury</item>
-            <item>Venus</item>
-            <item>Earth</item>
-            <item>Mars</item>
-            <item>Jupiter</item>
-            <item>Saturn</item>
-            <item>Uranus</item>
-            <item>Neptune</item>
-        </string-array>
-
 </resources>
