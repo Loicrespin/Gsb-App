@@ -104,6 +104,7 @@ public class AddEventActivity extends MenuActivity {
         mSelectedMembers = new ArrayList<>();
         GetPrivilegesTask getPrivilegesTask = new GetPrivilegesTask();
         getPrivilegesTask.execute();
+        onStop();
     }
 
     public void refreshSuggestions() {
@@ -263,11 +264,26 @@ public class AddEventActivity extends MenuActivity {
         }
     }
 
+    private String constructMembersString() {
+        StringBuffer buffer = new StringBuffer();
+        boolean first = true;
+        for (Member member : mSelectedMembers) {
+            if (first) {
+                first = false;
+            }
+            else {
+                buffer.append(',');
+            }
 
+            buffer.append(member.getId());
+        }
+        return buffer.toString();
+
+    }
 
     private class MembersAdapter extends ArrayAdapter<Member> {
-        private ArrayList<MemberHolder> mMembersList;
         private final String LOG_TAG = MembersAdapter.class.getSimpleName();
+        private ArrayList<MemberHolder> mMembersList;
 
         public MembersAdapter(Context context, int resource, List<Member> members) {
             super(context, resource, members);
@@ -276,16 +292,6 @@ public class AddEventActivity extends MenuActivity {
                 mMembersList.add(new MemberHolder(m, false));
             }
 
-        }
-
-        private class MemberHolder {
-            Member member;
-            boolean isChecked;
-
-            public MemberHolder(Member member, boolean isChecked) {
-                this.member = member;
-                this.isChecked = isChecked;
-            }
         }
 
         @Override
@@ -325,6 +331,16 @@ public class AddEventActivity extends MenuActivity {
             cbMember.setChecked(memberHolder.isChecked);
 
             return convertView;
+        }
+
+        private class MemberHolder {
+            Member member;
+            boolean isChecked;
+
+            public MemberHolder(Member member, boolean isChecked) {
+                this.member = member;
+                this.isChecked = isChecked;
+            }
         }
     }
 
@@ -481,23 +497,6 @@ public class AddEventActivity extends MenuActivity {
                 }
             }
         }
-
-    }
-
-    private String constructMembersString() {
-        StringBuffer buffer = new StringBuffer();
-        boolean first = true;
-        for (Member member : mSelectedMembers) {
-            if (first) {
-                first = false;
-            }
-            else {
-                buffer.append(',');
-            }
-
-            buffer.append(member.getId());
-        }
-        return buffer.toString();
 
     }
 }

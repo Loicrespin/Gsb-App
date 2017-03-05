@@ -3,75 +3,84 @@
 
     <item
         is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e7f33634a4d9e08e1c873bcad31cf35554d0d6a5\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="23.0.1"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.4.0_61eadc1e2d13ffe623febd956c781637c1aa9623\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.mcxiaoke.volley\library-aar\1.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.mcxiaoke.volley-library-aar-1.0.0_46d664ba2843749e1de7d87e44957e47a37c275e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_84a968293e30703800503c21b572d20414ec2828\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_bdef9b557b6d94bedf26db6488eb24e5262d700e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
+        revision="25.0.0"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_32419dd1a567b093f7a84f305c820f5daa12f6a4\classes.dex" />
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a4014c262ee65b57845b63aae53b54d60b8a668b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\2df95659e665bc0fa411038ec8626df6e1e4e2fc\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="23.0.1"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_d6761d4bcbb5cfa19a7831c3b10ccddbab34eef5\classes.dex" />
+        revision="25.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ec6064ebfa60705dc3995988956bc8c5421416c6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e29d5b04c96e5f716317d64bf6936fc7dbddfa4b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_11fcbe3f844c4e78ff3fa01b0fa642dd29cb1243\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
-        revision="23.0.1"
-        sha1="cbdbe3b9dea1bcb7d5fa343355df4a8382e9c080">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ec68e77e6c9b32e9b578b522792c192c9aa639c3\classes.dex" />
+        revision="25.0.0"
+        sha1="95b33ab1f5eb774edf633bd6e474b7b71965b3ac">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ec68e77e6c9b32e9b578b522792c192c9aa639c3\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\3279fa3d691d88c07438bde896a4d59aeaf14908\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="23.0.1"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_dc832cc1ab8e3d8f1247bb297059ae92af613c2f\classes.dex" />
+        revision="25.0.0"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ed165bb572067d6a9910dc5f4ff7f6b7884026e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e3edc7c1300b13ef4d24d353fc286173b8665035\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5f2fe990611f7f4cf066e864ff4ad405e1859377\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\3a2215826e899b1d822ddd711f0c363c7052c749\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ffded9928dc64fe22b3dfeeb559da5cd44054d9b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_07fbee30aec33bcaea1b7830e5191fcbfdbdbfbd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e3edc7c1300b13ef4d24d353fc286173b8665035\output\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_d55bfae3a0361f5a47fc86ea2a69cbedd8ad120c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -84,21 +93,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jar="D:\Programme\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="true"
         optimize="true"
-        revision="23.0.1"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_0975b37f0b962090d2ca2f0dc0cdfbbed91e16aa\classes.dex" />
+        revision="25.0.0"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_52221fc8b230c00cd177b6fd7cb12eaf4b7879af\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\924e8406156b82350043c01338f73be26f065a05\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="23.0.1"
-        sha1="1ab2cce91acd845bbdfdcd55976bb9a307bbc3ac">
-        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_07fbee30aec33bcaea1b7830e5191fcbfdbdbfbd\classes.dex" />
+        revision="25.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_09f38d733bbae610a1b02558635761110f3353fd\classes.dex" />
     </item>
 
 </items>

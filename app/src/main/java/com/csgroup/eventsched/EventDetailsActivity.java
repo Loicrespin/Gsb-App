@@ -26,7 +26,7 @@ public class EventDetailsActivity extends MenuActivity {
         Intent intent = getIntent();
         mEvent = intent.getParcelableExtra("event");
         this.setEventDetails();
-        onPause();
+        onStop();
     }
 
     private void setEventDetails() {

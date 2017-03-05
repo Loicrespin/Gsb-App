@@ -9,6 +9,7 @@ import android.database.MatrixCursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.BaseColumns;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.CursorAdapter;
@@ -18,11 +19,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -43,10 +46,24 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
     // CONNECTION_TIMEOUT and READ_TIMEOUT are in milliseconds
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
+
+    //For the search
     SearchView searchView = null;
+    //VISIT CARD
+    TextView NOM = null;
+    TextView PRENOM = null;
+    TextView ADRESSE = null;
+    TextView VILLE = null;
+    TextView COEFF = null;
+    TextView LIEUX = null;
+    String nomrecup;
+    String prenomrecup;
+    String adresserecup;
+    String villerecup;
+    String coeffrecup;
+    String lieurecup;
     private SimpleCursorAdapter myAdapter;
     private String[] strArrData = {"No Suggestions"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +72,24 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final String[] from = new String[] {"fishName"};
+        //Element pour le search
+        final String[] from = new String[] {"id"};
         final int[] to = new int[] {android.R.id.text1};
+
+        //Element pour la carte de visite
+        NOM = (TextView)findViewById(R.id.nom);
+        PRENOM = (TextView)findViewById(R.id.prenom);
+        ADRESSE = (TextView)findViewById(R.id.adresse);
+        VILLE = (TextView)findViewById(R.id.ville);
+        COEFF = (TextView)findViewById(R.id.coeff);
+        LIEUX = (TextView)findViewById(R.id.lieux);
 
         // setup SimpleCursorAdapter
         myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
         // Fetch data from mysql table using AsyncTask
         new AsyncFetch().execute();
+
 
         //commande d'affichage du menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,6 +102,7 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -96,6 +124,7 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         // Get Search item from action bar and Get Search service
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) CoordActivity.this.getSystemService(Context.SEARCH_SERVICE);
+
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
         }
@@ -103,16 +132,26 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
             searchView.setSearchableInfo(searchManager.getSearchableInfo(CoordActivity.this.getComponentName()));
             searchView.setIconified(false);
             searchView.setSuggestionsAdapter(myAdapter);
-            // Getting selected (clicked) item suggestion
+
+            // Getting selected (CLICKED) item suggestion
             searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+
                 @Override
                 public boolean onSuggestionClick(int position) {
-
                     // Add clicked text to search box
                     CursorAdapter ca = searchView.getSuggestionsAdapter();
                     Cursor cursor = ca.getCursor();
                     cursor.moveToPosition(position);
-                    searchView.setQuery(cursor.getString(cursor.getColumnIndex("fishName")),false);
+                    searchView.setQuery(cursor.getString(cursor.getColumnIndex("id")),false);
+
+                    NOM.setText(nomrecup);
+                    PRENOM.setText(prenomrecup);
+                    ADRESSE.setText(adresserecup);
+                    VILLE.setText(villerecup);
+                    COEFF.setText(coeffrecup);
+                    LIEUX.setText(lieurecup);
+
+
                     return true;
                 }
 
@@ -131,11 +170,61 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
                 public boolean onQueryTextChange(String s) {
 
                     // Filter data
-                    final MatrixCursor mc = new MatrixCursor(new String[]{ BaseColumns._ID, "fishName" });
+                    final MatrixCursor mc = new MatrixCursor(new String[]{BaseColumns._ID, "id"});
+
                     for (int i=0; i<strArrData.length; i++) {
-                        if (strArrData[i].toLowerCase().startsWith(s.toLowerCase()))
-                            mc.addRow(new Object[] {i, strArrData[i]});
+                        if (strArrData[i].toLowerCase().startsWith(s.toLowerCase())) {
+                            mc.addRow(new Object[]{i, strArrData[i]});
+                        }
                     }
+
+                    for (int i=0; i<strArrData.length; i++) {
+                        if (strArrData[i].toLowerCase().startsWith(s.toLowerCase())) {
+
+                            //récupération du nom
+                            for (int j = 0; j <= i; j++)
+                            {
+                                nomrecup = strArrData[j];
+                            }
+
+                            //récupération du prénom
+                            for (int j = 0; j <= i+1; j++)
+                            {
+                                prenomrecup = strArrData[j];
+                            }
+
+                            //récupération de l'adresse
+                            for (int j = 0; j <= i+2; j++)
+                            {
+                                adresserecup = strArrData[j];
+                            }
+
+                            //récupération de la ville
+                            for (int j = 0; j <= i+3; j++)
+                            {
+                                villerecup = strArrData[j];
+                            }
+
+                            //récupération de la coeff
+                            for (int j = 0; j <= i+4; j++)
+                            {
+                                coeffrecup = strArrData[j];
+                            }
+
+                            //récupération de la Lieux d'exercice
+                            for (int j = 0; j <= i+5; j++)
+                            {
+                                lieurecup = strArrData[j];
+                            }
+
+                            break;
+
+                        }
+
+
+
+                    }
+
                     myAdapter.changeCursor(mc);
                     return false;
                 }
@@ -203,6 +292,11 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     // Create class AsyncFetch
@@ -308,22 +402,31 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
                     // Extract data from json and store into ArrayList
                     for (int i = 0; i < jArray.length(); i++) {
                         JSONObject json_data = jArray.getJSONObject(i);
+                        dataList.add(json_data.getString("id"));
                         dataList.add(json_data.getString("nom"));
+                        dataList.add(json_data.getString("prenom"));
+                        dataList.add(json_data.getString("adresse"));
+                        dataList.add(json_data.getString("ville"));
+                        dataList.add(json_data.getString("coeff"));
+                        dataList.add(json_data.getString("lieux"));
                     }
+
 
                     strArrData = dataList.toArray(new String[dataList.size()]);
 
-                } catch (JSONException e) {
+
+                } catch (JSONException e10) {
                     // You to understand what actually error is and handle it appropriately
-                    Toast.makeText(CoordActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e10.printStackTrace();
+                    Toast.makeText(CoordActivity.this, e10.toString(), Toast.LENGTH_LONG).show();
                     Toast.makeText(CoordActivity.this, result.toString(), Toast.LENGTH_LONG).show();
                 }
 
             }
 
+
         }
 
     }
-
-
 }
+

@@ -130,7 +130,12 @@ public class Agenda extends MenuActivity
         return true;
     }
 
-//Detruire la task pour le logout
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    //Detruire la task pour le logout
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -139,10 +144,5 @@ public class Agenda extends MenuActivity
             // stop service and clear preferences
             preferencesManager.logout();
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 }

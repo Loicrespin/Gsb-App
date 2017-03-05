@@ -18,18 +18,12 @@ public class JsonParser {
     private static final String API_ERROR_MESSAGE = "message";
     private static final String API_MESSAGE = "message";
     private static final String API_EVENTS_ARRAY = "events";
+    private static final String API_PRATICIEN_ARRAY = "spinner.php";
     private static final String API_EVENT = "event";
     private static final String API_MEMBERS_ARRAY = "members";
     private static final String API_COMMENTS_ARRAY = "comments";
     private static final String API_COMMENT = "comment";
     private static final String API_FREE_TIMES_ARRAY = "free_times";
-
-    public static class JsonParserException extends Exception {
-        public JsonParserException(String detailMessage) {
-            super(detailMessage);
-        }
-    }
-
 
     /**
      * parses response from /eventsched/v1/login
@@ -101,7 +95,6 @@ public class JsonParser {
             return null;
         }
     }
-
 
     /**
      * parses response from /eventsched/v1/priv
@@ -216,7 +209,6 @@ public class JsonParser {
 
     }
 
-
     private static Comment helperParseComment(JSONObject commentJson) throws JSONException {
         int id = commentJson.getInt(Comment.API_ID);
         int eventId = commentJson.getInt(Comment.API_EVENT_ID);
@@ -258,13 +250,18 @@ public class JsonParser {
         }
     }
 
-
     private static boolean containsError(JSONObject jsonObject) throws JSONException{
         return jsonObject.getBoolean(API_ERROR);
     }
 
     private static String getErrorMessage(JSONObject jsonObject) throws JSONException{
         return jsonObject.getString(API_ERROR_MESSAGE);
+    }
+
+    public static class JsonParserException extends Exception {
+        public JsonParserException(String detailMessage) {
+            super(detailMessage);
+        }
     }
 
 

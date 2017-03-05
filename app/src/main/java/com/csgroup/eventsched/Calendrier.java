@@ -9,7 +9,12 @@ public class Calendrier extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendrier);
 
+
+
     }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }
