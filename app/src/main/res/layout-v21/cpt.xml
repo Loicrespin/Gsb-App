@@ -2,9 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="55dp"
     android:background="@drawable/gradient"
     android:orientation="vertical"
+    android:paddingTop="55dp"
     android:weightSum="1"
     tools:context=".CoordActivity">
 
@@ -15,8 +15,8 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="vertical"
       android:layout_marginTop="0dp"
+      android:orientation="vertical"
       android:paddingLeft="5dp"
       android:paddingRight="5dp">
 
@@ -24,8 +24,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:background="@drawable/event_bg">
+        android:background="@drawable/event_bg"
+        android:paddingBottom="30dp">
 
 
 
@@ -44,10 +44,10 @@
           android:textStyle="bold" />
 
         <ImageView
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/ic_assignment_black_24dp"
             />
 
@@ -55,11 +55,11 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:gravity="center"
           android:layout_marginLeft="5dp"
-          android:paddingRight="5dp"
           android:layout_marginTop="60dp"
-          android:orientation="vertical">
+          android:gravity="center"
+          android:orientation="vertical"
+          android:paddingRight="5dp">
 
 
         <EditText
@@ -85,17 +85,17 @@
             android:textSize="18dp"/>
 
           <RelativeLayout
-              android:layout_marginTop="20dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
               android:background="@drawable/bilan_box_bg">
 
         <EditText
             android:id="@+id/bilan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="10"
             android:hint="Bilan"
+            android:maxLines="10"
             android:textColor="#000000"
             android:textSize="18dp"/>
 
@@ -106,8 +106,8 @@
               android:id="@+id/cpt"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginRight="5dp"
               android:layout_gravity="right"
+              android:layout_marginRight="5dp"
               android:text="@string/carac"
               android:textSize="10dp"/>
 
@@ -115,8 +115,8 @@
           <RelativeLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="20dp"
-              android:layout_marginBottom="10dp">
+              android:layout_marginBottom="10dp"
+              android:layout_marginTop="20dp">
 
         <AutoCompleteTextView
             android:layout_width="wrap_content"
@@ -142,23 +142,25 @@
               android:id="@+id/add"
               android:layout_width="100dp"
               android:layout_height="30dp"
-              android:layout_marginLeft="80dp"
               android:layout_gravity="left"
+              android:layout_marginLeft="70dp"
               android:layout_marginTop="0dp"
               android:background="@drawable/rounded_validbutton"
               android:text="Ajout"
-              android:textColor="#ffffff"/>
+              android:textColor="#ffffff"
+              android:textSize="12dp"/>
 
           <Button
               android:id="@+id/sup"
               android:layout_width="100dp"
               android:layout_height="30dp"
-              android:layout_marginRight="80dp"
               android:layout_gravity="right"
+              android:layout_marginRight="70dp"
               android:layout_marginTop="-30dp"
               android:background="@drawable/rounded_suppbutton"
               android:text="suppression"
-              android:textColor="#ffffff"/>
+              android:textColor="#ffffff"
+              android:textSize="12dp"/>
 
 
 

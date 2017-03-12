@@ -124,6 +124,11 @@ public class Agenda extends MenuActivity
 
         } else if (id == R.id.nav_medic) {
 
+            Intent intent = new Intent(Agenda.this, Medicaments.class);
+            startActivity(intent);
+            onPause();
+
+
         } else if (id == R.id.nav_loc) {
 
         }

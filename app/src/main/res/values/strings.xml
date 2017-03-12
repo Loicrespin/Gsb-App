@@ -7,6 +7,10 @@
     <string name="title_activity_home">Accueil</string>
     <string name="title_activity_event_details">Détails</string>
     <string name="title_activity_add_event">Ajouter un événement</string>
+    <string name="Coordonees">Coordonées</string>
+    <string name="Calendrier">Calendrier</string>
+    <string name="Medics">Médicaments</string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -18,7 +22,7 @@
     <string name="nav_agenda">Agenda</string>
     <string name="nav_coord">Coordonées</string>
     <string name="nav_cpt">Compte Rendu</string>
-    <string name="nav_medic">Echantillons</string>
+    <string name="nav_medic">Médicaments</string>
 
     <string name="nav_nav">Navigation</string>
     <string name="nav_loc">Location véhicule</string>
@@ -35,26 +39,30 @@
     <string name="port">Port : </string>
     <string name="tel">Tel : </string>
     <string name="ville">Ville : </string>
-    <string name="coeff">Coefficient Notoriété : </string>
+    <string name="coeff">Coefficient : </string>
     <string name="lieux">Lieux exercice : </string>
 
     <!-- Compte rendue vue -->
     <string name="Cpt">Compte Rendu</string>
 
-        <string-array name="quantity_array">
-            <item>1</item>
-            <item>2</item>
-            <item>3</item>
-            <item>4</item>
-            <item>5</item>
-            <item>6</item>
-            <item>7</item>
-            <item>8</item>
-            <item>9</item>
-            <item>10</item>
-        </string-array>
+    <string-array name="quantity_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 
     <string name="carac">380 caractère restant</string>
+
+    <string name="Medicaments">Médicaments</string>
+
+
 
 
 </resources>

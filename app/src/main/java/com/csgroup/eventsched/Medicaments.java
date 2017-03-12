@@ -1,49 +1,24 @@
 package com.csgroup.eventsched;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-public class CompteRendu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, TextWatcher {
-
-
-    private EditText status;
-    private TextView nbCharTxt;
+public class Medicaments extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compte_rendu);
+        setContentView(R.layout.activity_medicaments);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        status = (EditText) findViewById(R.id.bilan);
-        status.addTextChangedListener(this);
-        nbCharTxt = (TextView) findViewById(R.id.cpt);
-        nbCharTxt.setTextColor(Color.GREEN);
-
-        Spinner spinner = (Spinner) findViewById(R.id.quantity);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.quantity_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
 
         //commande d'affichage du menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -55,34 +30,6 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-        int nbChar = status.getText().toString().length();
-        int leftChar = 380 - nbChar;
-        nbCharTxt.setText(Integer.toString(leftChar) + " caracteres restant");
-        nbCharTxt.setTextColor(Color.GREEN);
-        if (leftChar < 10 && leftChar >= 0)
-            nbCharTxt.setTextColor(Color.YELLOW);
-        else if (leftChar <= 0)
-        {
-            nbCharTxt.setTextColor(Color.RED);
-            nbCharTxt.setText(Integer.toString(Math.abs(leftChar)) + " caracteres en trop");
-        }
-
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence charSeq, int arg1, int arg2,
-                                  int arg3) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSeq, int arg1, int arg2, int arg3) {
-
     }
 
 
@@ -93,7 +40,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            finish();
+            onPause();
         }
     }
 
@@ -127,24 +74,25 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
         if (id == R.id.nav_agenda) {
 
-            Intent intent = new Intent(CompteRendu.this, Agenda.class);
+            Intent intent = new Intent(Medicaments.this, Agenda.class);
             startActivity(intent);
             finish();
 
         } else if (id == R.id.nav_coord) {
 
-            Intent intent = new Intent(CompteRendu.this, CoordActivity.class);
+            Intent intent = new Intent(Medicaments.this, CoordActivity.class);
             startActivity(intent);
             onPause();
 
         } else if (id == R.id.nav_cpt) {
 
+            Intent intent = new Intent(Medicaments.this, CompteRendu.class);
+            startActivity(intent);
+            onPause();
+
 
         } else if (id == R.id.nav_medic) {
 
-            Intent intent = new Intent(CompteRendu.this, Medicaments.class);
-            startActivity(intent);
-            onPause();
 
         } else if (id == R.id.nav_loc) {
 
@@ -155,6 +103,4 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }

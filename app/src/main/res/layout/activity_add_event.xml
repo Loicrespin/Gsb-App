@@ -90,10 +90,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/containerMembers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/containerMembers">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView6"
@@ -137,17 +137,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="0dp"
                         android:text="Filtres" />
                     <Button
                         android:id="@+id/btnRefreshSuggestions"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="-115dp"
-
-                        android:layout_below="@id/btnFilterOptions"
                         android:layout_alignLeft="@id/btnFilterOptions"
+                        android:layout_below="@id/btnFilterOptions"
+
+                        android:layout_marginLeft="-100dp"
+                        android:layout_marginTop="-48dp"
                         android:text="Rafraichir"/>
 
                 </RelativeLayout>
@@ -168,22 +169,22 @@
 
                 <Button
                     android:id="@+id/btnEventCreate"
-                    android:background="#33FF66"
-                    android:textColor="#ffffff"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
                     android:layout_weight="30"
-                    android:text="Créer" />
+                    android:background="#33FF66"
+                    android:text="Créer"
+                    android:textColor="#ffffff" />
 
                 <Button
                     android:id="@+id/btnEventCancel"
-                    android:textColor="#ffffff"
-                    android:background="#E74C3C"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
-                    android:text="Annuler" />
+                    android:background="#E74C3C"
+                    android:text="Annuler"
+                    android:textColor="#ffffff" />
 
 
             </LinearLayout>

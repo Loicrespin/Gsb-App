@@ -1,0 +1,229 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".CoordActivity">
+
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="100dp"
+      android:orientation="vertical"
+      android:paddingLeft="5dp"
+      android:paddingRight="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/event_bg">
+
+      <TextView
+          android:id="@+id/echantillon"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="0dp"
+          android:background="#ffe74c3c"
+          android:paddingBottom="20dp"
+          android:paddingLeft="50dp"
+          android:paddingTop="20dp"
+          android:text="Fiche échantillon"
+          android:textAppearance="?android:attr/textAppearanceLarge"
+          android:textColor="#ECF0F1"
+          android:textSize="15sp"
+          android:textStyle="bold|italic" />
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="6dp"
+          android:layout_marginTop="16dp"
+          android:src="@drawable/ic_assignment_black_24dp"/>
+
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="65dp"
+          android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nom"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prenom"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/adresse"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ville"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/port"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tel"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/coeff"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lieux"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+      </LinearLayout>
+
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="240dp"
+          android:layout_marginTop="65dp">
+
+        <TextView
+            android:id="@+id/nom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="noname"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/prenom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="noprenom"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="240dp"
+          android:layout_marginTop="125dp">
+
+        <TextView
+            android:id="@+id/adresse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="noadresse"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/ville"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="noville"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+      </RelativeLayout>
+
+      <!-- Layout de lieux et coeff -->
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="50dp"
+          android:layout_marginBottom="15dp"
+          android:layout_marginLeft="240dp"
+          android:layout_marginTop="190dp">
+
+        <TextView
+            android:id="@+id/port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="noPort"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="noTel"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+      </RelativeLayout>
+
+      <!-- Layout de lieux et coeff -->
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="50dp"
+          android:layout_marginBottom="15dp"
+          android:layout_marginLeft="240dp"
+          android:layout_marginTop="250dp">
+
+        <TextView
+            android:id="@+id/coeff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="noCoeff"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/lieux"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Nolieux"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+      </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+</LinearLayout>

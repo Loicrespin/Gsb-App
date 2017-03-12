@@ -2,121 +2,139 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\loicc\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.1\constraint-layout-solver-1.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1ad79631209e77b0a2730fc112b4cc0c66a95132">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.1_833749c681480e9e778a9556d3719cf57cd95599\classes.dex" />
-    </item>
-    <item
         is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\afdde57ede541b603bf10d8480df36d15ea21600\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_9206900986043826a9ef46ab934215c0cadea69d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\7ca365df08f19fd267f80b25b08116a4b8afda60\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_f5b496c83d8fe31fe4f171f0274fe271d59f1050.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\bfb2eeeb4f67b72a56fd8becf3aad7a9813a377f\output\jars\classes.jar"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e7f33634a4d9e08e1c873bcad31cf35554d0d6a5\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_3ad580a2e3cf060da2146505900d71969b94e6aa.jar" />
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_a4014c262ee65b57845b63aae53b54d60b8a668b.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\loicc\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jar="D:\Programme\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_cccf6ce08d8afe853adcc1ae8dbc87f7e334a0b1.jar" />
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_52221fc8b230c00cd177b6fd7cb12eaf4b7879af.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7120ade00072fc284b5fecf36fc798c04fc52dfc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\loicc\.android\build-cache\c26d74bc2a9a56b9fe8014715cc10b1c5e250f29\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7113302c965566b66df46c6ca75ea301576114a5">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9c8223466346780dfcd820d56bf272a18656e593\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="01027ca179a13201e632d34ba0b43e4ff9afde81">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6ba5833db224e2899f72f8612f3ad73f5c282d18\classes.dex" />
+        sha1="b06b49b0e89b6006322b955fa60bbc6dc2c3fdf6">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ec68e77e6c9b32e9b578b522792c192c9aa639c3\classes.dex" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\0f466d9bdb0787679043e2add2a0d2c5b6e35263\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_b3e79b5c24f59f4121519b4ed78471d40b265ee6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\47224aaaf8b77f3f2398dcc953095b1a87ab90fa\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_54a8fd23ca4866d83a9587add75bc1ffefef928b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\7090e3322e1a0ebdf00d32a227e702bd11fdee63\output\jars\classes.jar"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\2df95659e665bc0fa411038ec8626df6e1e4e2fc\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_a1bb3178cda0ed4a6e94244bf2869fb5e56b8b5e.jar" />
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_ec6064ebfa60705dc3995988956bc8c5421416c6.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Programme\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.1\constraint-layout-solver-1.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1ad79631209e77b0a2730fc112b4cc0c66a95132">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.1_192e7ea6581deb120468594e336f51bbbed9a291\classes.dex" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\e5a45affea47a38fba3e1d4af91920a4aca364de\output\jars\classes.jar"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\3279fa3d691d88c07438bde896a4d59aeaf14908\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_ed165bb572067d6a9910dc5f4ff7f6b7884026e4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e3edc7c1300b13ef4d24d353fc286173b8665035\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_f2cc0f5a847d58f4f56d9684b1486c885d3393d8.jar" />
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_5f2fe990611f7f4cf066e864ff4ad405e1859377.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\loicc\.android\build-cache\e5a45affea47a38fba3e1d4af91920a4aca364de\output\jars\libs\internal_impl-23.4.0.jar"
+        jar="D:\Programme\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.1\constraint-layout-solver-1.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1ad79631209e77b0a2730fc112b4cc0c66a95132">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.1_192e7ea6581deb120468594e336f51bbbed9a291.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\3a2215826e899b1d822ddd711f0c363c7052c749\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_ffded9928dc64fe22b3dfeeb559da5cd44054d9b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e3edc7c1300b13ef4d24d353fc286173b8665035\output\jars\libs\internal_impl-23.4.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_2314cc5fafacbe8eb14f8cae31fa8c2c9e4d6a98.jar" />
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_d55bfae3a0361f5a47fc86ea2a69cbedd8ad120c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\924e8406156b82350043c01338f73be26f065a05\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_09f38d733bbae610a1b02558635761110f3353fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\e29d5b04c96e5f716317d64bf6936fc7dbddfa4b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_11fcbe3f844c4e78ff3fa01b0fa642dd29cb1243.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_07fbee30aec33bcaea1b7830e5191fcbfdbdbfbd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\565cee4741d5b0bf6ee95b2bbd5cba1232c23394\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7113302c965566b66df46c6ca75ea301576114a5">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4f3c5e946abd7b44049a4ae112b7e4f9a487e074\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Loïc Crespin\.android\build-cache\565cee4741d5b0bf6ee95b2bbd5cba1232c23394\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7113302c965566b66df46c6ca75ea301576114a5">
+        <dex dex="D:\Loïc Crespin\Documents\Projetbts\Ppe-master\app\build\intermediates\pre-dexed\debug\classes_4f3c5e946abd7b44049a4ae112b7e4f9a487e074.jar" />
     </item>
 
 </items>

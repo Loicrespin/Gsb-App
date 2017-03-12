@@ -314,6 +314,10 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
         } else if (id == R.id.nav_medic) {
 
+            Intent intent = new Intent(CoordActivity.this, Medicaments.class);
+            startActivity(intent);
+            onPause();
+
         } else if (id == R.id.nav_loc) {
 
         }
@@ -351,7 +355,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
             try {
 
                 // Enter URL address where your php file resides or your JSON file address
-                url = new URL("http://10.0.3.2:80/eventsched/v1/spinner.php");
+                url = new URL("http://192.168.1.16:80/eventsched/v1/spinner.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
