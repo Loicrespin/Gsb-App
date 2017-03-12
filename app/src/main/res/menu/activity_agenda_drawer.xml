@@ -23,10 +23,6 @@
     <item android:title="Utilitaires">
         <menu>
             <item
-                android:id="@+id/nav_nav"
-                android:icon="@drawable/ic_near_me_black_24dp"
-                android:title="@string/nav_nav" />
-            <item
                 android:id="@+id/nav_loc"
                 android:icon="@drawable/ic_directions_car_black_24dp"
                 android:title="@string/nav_loc" />

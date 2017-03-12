@@ -1,0 +1,190 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="55dp"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".CoordActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="0dp"
+      android:paddingLeft="5dp"
+      android:paddingRight="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:background="@drawable/event_bg">
+
+
+
+      <EditText
+          android:id="@+id/tvEventdetailsTitle"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:background="#34393E"
+          android:gravity="center"
+          android:paddingBottom="20dp"
+          android:paddingTop="20dp"
+          android:text="Titre"
+          android:textAppearance="?android:attr/textAppearanceLarge"
+          android:textColor="#ECF0F1"
+          android:textSize="16sp"
+          android:textStyle="bold" />
+
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_assignment_black_24dp"
+            />
+
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:layout_marginLeft="5dp"
+          android:paddingRight="5dp"
+          android:layout_marginTop="60dp"
+          android:orientation="vertical">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Praticien"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Date du rapport"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Motif de visite"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+          <RelativeLayout
+              android:layout_marginTop="20dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/bilan_box_bg">
+
+        <EditText
+            android:id="@+id/bilan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="10"
+            android:hint="Bilan"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+
+          </RelativeLayout>
+
+          <TextView
+              android:id="@+id/cpt"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="5dp"
+              android:layout_gravity="right"
+              android:text="@string/carac"
+              android:textSize="10dp"/>
+
+
+          <RelativeLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginBottom="10dp">
+
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Médicament"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+
+              <Spinner
+                  android:id="@+id/quantity"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="130dp"
+                  android:layout_marginTop="25dp"
+                  android:hint="Quantité"
+                  android:textColor="#000000"
+                  android:textSize="18dp"/>
+
+          </RelativeLayout>
+
+          <Button
+              android:id="@+id/add"
+              android:layout_width="100dp"
+              android:layout_height="30dp"
+              android:layout_marginLeft="80dp"
+              android:layout_gravity="left"
+              android:layout_marginTop="0dp"
+              android:background="@drawable/rounded_validbutton"
+              android:text="Ajout"
+              android:textColor="#ffffff"/>
+
+          <Button
+              android:id="@+id/sup"
+              android:layout_width="100dp"
+              android:layout_height="30dp"
+              android:layout_marginRight="80dp"
+              android:layout_gravity="right"
+              android:layout_marginTop="-30dp"
+              android:background="@drawable/rounded_suppbutton"
+              android:text="suppression"
+              android:textColor="#ffffff"/>
+
+
+
+      </LinearLayout>
+
+
+
+
+      </RelativeLayout>
+
+      <Button
+          android:id="@+id/call"
+          android:layout_width="200dp"
+          android:layout_height="30dp"
+          android:layout_gravity="center"
+          android:layout_marginTop="50dp"
+          android:background="@drawable/rounded_validbutton"
+          android:text="Envoyer"
+          android:textColor="#ffffff"/>
+
+  </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>
+
+

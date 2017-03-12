@@ -9,7 +9,6 @@ import android.database.MatrixCursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.CursorAdapter;
@@ -19,12 +18,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +37,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class CoordActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class CoordActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // CONNECTION_TIMEOUT and READ_TIMEOUT are in milliseconds
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -49,19 +45,29 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
 
     //For the search
     SearchView searchView = null;
+
+    Button makecall;
+
     //VISIT CARD
     TextView NOM = null;
     TextView PRENOM = null;
     TextView ADRESSE = null;
     TextView VILLE = null;
+    TextView PORT = null;
+    TextView TEL = null;
     TextView COEFF = null;
     TextView LIEUX = null;
+
+    //TRANSFERT DE DONNEES
     String nomrecup;
     String prenomrecup;
     String adresserecup;
     String villerecup;
+    String portrecup;
+    String telrecup;
     String coeffrecup;
     String lieurecup;
+
     private SimpleCursorAdapter myAdapter;
     private String[] strArrData = {"No Suggestions"};
 
@@ -73,23 +79,27 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         setSupportActionBar(toolbar);
 
         //Element pour le search
-        final String[] from = new String[] {"id"};
-        final int[] to = new int[] {android.R.id.text1};
+        final String[] from = new String[]{"id"};
+        final int[] to = new int[]{android.R.id.text1};
 
         //Element pour la carte de visite
-        NOM = (TextView)findViewById(R.id.nom);
-        PRENOM = (TextView)findViewById(R.id.prenom);
-        ADRESSE = (TextView)findViewById(R.id.adresse);
-        VILLE = (TextView)findViewById(R.id.ville);
-        COEFF = (TextView)findViewById(R.id.coeff);
-        LIEUX = (TextView)findViewById(R.id.lieux);
+        NOM = (TextView) findViewById(R.id.nom);
+        PRENOM = (TextView) findViewById(R.id.prenom);
+        ADRESSE = (TextView) findViewById(R.id.adresse);
+        VILLE = (TextView) findViewById(R.id.ville);
+        PORT = (TextView) findViewById(R.id.port);
+        TEL = (TextView) findViewById(R.id.tel);
+        COEFF = (TextView) findViewById(R.id.coeff);
+        LIEUX = (TextView) findViewById(R.id.lieux);
+
+        //Bouton image de l'activity agenda pour l'ajout dévénement
+        makecall = (Button) findViewById(R.id.call);
 
         // setup SimpleCursorAdapter
         myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
         // Fetch data from mysql table using AsyncTask
         new AsyncFetch().execute();
-
 
         //commande d'affichage du menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -101,6 +111,7 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
     }
 
 
@@ -111,6 +122,7 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
     }
 
@@ -148,6 +160,8 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
                     PRENOM.setText(prenomrecup);
                     ADRESSE.setText(adresserecup);
                     VILLE.setText(villerecup);
+                    PORT.setText(portrecup);
+                    TEL.setText(telrecup);
                     COEFF.setText(coeffrecup);
                     LIEUX.setText(lieurecup);
 
@@ -205,17 +219,30 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
                                 villerecup = strArrData[j];
                             }
 
-                            //récupération de la coeff
+                            //récupération du port
                             for (int j = 0; j <= i+4; j++)
+                            {
+                                portrecup = strArrData[j];
+                            }
+
+                            //récupération du tel
+                            for (int j = 0; j <= i+5; j++)
+                            {
+                                telrecup = strArrData[j];
+                            }
+
+                            //Recupération du coeff
+                            for (int j = 0; j <= i+6; j++)
                             {
                                 coeffrecup = strArrData[j];
                             }
 
-                            //récupération de la Lieux d'exercice
-                            for (int j = 0; j <= i+5; j++)
+                            //Récupération du lieux
+                            for (int j = 0; j <= i+7; j++)
                             {
                                 lieurecup = strArrData[j];
                             }
+
 
                             break;
 
@@ -281,9 +308,11 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
 
         } else if (id == R.id.nav_cpt) {
 
-        } else if (id == R.id.nav_medic) {
+            Intent intent = new Intent(CoordActivity.this, CompteRendu.class);
+            startActivity(intent);
+            onPause();
 
-        } else if (id == R.id.nav_nav) {
+        } else if (id == R.id.nav_medic) {
 
         } else if (id == R.id.nav_loc) {
 
@@ -322,7 +351,7 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
             try {
 
                 // Enter URL address where your php file resides or your JSON file address
-                url = new URL("http://192.168.1.16:80/eventsched/v1/spinner.php");
+                url = new URL("http://10.0.3.2:80/eventsched/v1/spinner.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -407,6 +436,8 @@ public class CoordActivity extends AppCompatActivity  implements NavigationView.
                         dataList.add(json_data.getString("prenom"));
                         dataList.add(json_data.getString("adresse"));
                         dataList.add(json_data.getString("ville"));
+                        dataList.add(json_data.getString("port"));
+                        dataList.add(json_data.getString("tel"));
                         dataList.add(json_data.getString("coeff"));
                         dataList.add(json_data.getString("lieux"));
                     }

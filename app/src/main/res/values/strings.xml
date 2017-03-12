@@ -32,8 +32,29 @@
     <string name="nom">Nom : </string>
     <string name="prenom">Prénom : </string>
     <string name="adresse">Adresse : </string>
+    <string name="port">Port : </string>
+    <string name="tel">Tel : </string>
     <string name="ville">Ville : </string>
     <string name="coeff">Coefficient Notoriété : </string>
     <string name="lieux">Lieux exercice : </string>
+
+    <!-- Compte rendue vue -->
+    <string name="Cpt">Compte Rendu</string>
+
+        <string-array name="quantity_array">
+            <item>1</item>
+            <item>2</item>
+            <item>3</item>
+            <item>4</item>
+            <item>5</item>
+            <item>6</item>
+            <item>7</item>
+            <item>8</item>
+            <item>9</item>
+            <item>10</item>
+        </string-array>
+
+    <string name="carac">380 caractère restant</string>
+
 
 </resources>

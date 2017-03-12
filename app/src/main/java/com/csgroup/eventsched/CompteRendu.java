@@ -1,53 +1,49 @@
 package com.csgroup.eventsched;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-public class Agenda extends MenuActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class CompteRendu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, TextWatcher {
+
+
+    private EditText status;
+    private TextView nbCharTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agenda);
+        setContentView(R.layout.activity_compte_rendu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        status = (EditText) findViewById(R.id.bilan);
+        status.addTextChangedListener(this);
+        nbCharTxt = (TextView) findViewById(R.id.cpt);
+        nbCharTxt.setTextColor(Color.GREEN);
 
-        //Bouton image de l'activity agenda pour l'ajout dévénement
-        ImageButton ibNewEvent = (ImageButton) findViewById(R.id.ibNewEvent);
-        ibNewEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Agenda.this, AddEventActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //Bouton image de l'activity agenda pour accès au calendrier
-        ImageButton ibNewEvent2 = (ImageButton) findViewById(R.id.imageButtonCal);
-        ibNewEvent2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Agenda.this, Calendrier.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-        // start service that fetches new events and notifies user
-        this.StartBackgroundService();
+        Spinner spinner = (Spinner) findViewById(R.id.quantity);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.quantity_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
         //commande d'affichage du menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -58,17 +54,37 @@ public class Agenda extends MenuActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        onPause();
+
+
     }
 
-
-    private void StartBackgroundService() {
-        Log.d("Agenda Activity: ", "service is running: " + RetrieveNewEventsService.isRunning );
-        if (!RetrieveNewEventsService.isRunning) {
-            Intent serviceIntent = new Intent(this, RetrieveNewEventsService.class);
-            startService(serviceIntent);
+    @Override
+    public void afterTextChanged(Editable editable) {
+        int nbChar = status.getText().toString().length();
+        int leftChar = 380 - nbChar;
+        nbCharTxt.setText(Integer.toString(leftChar) + " caracteres restant");
+        nbCharTxt.setTextColor(Color.GREEN);
+        if (leftChar < 10 && leftChar >= 0)
+            nbCharTxt.setTextColor(Color.YELLOW);
+        else if (leftChar <= 0)
+        {
+            nbCharTxt.setTextColor(Color.RED);
+            nbCharTxt.setText(Integer.toString(Math.abs(leftChar)) + " caracteres en trop");
         }
+
     }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSeq, int arg1, int arg2,
+                                  int arg3) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSeq, int arg1, int arg2, int arg3) {
+
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -77,6 +93,7 @@ public class Agenda extends MenuActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
     }
 
@@ -102,25 +119,26 @@ public class Agenda extends MenuActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_agenda) {
 
+            Intent intent = new Intent(CompteRendu.this, Agenda.class);
+            startActivity(intent);
+            onPause();
+
         } else if (id == R.id.nav_coord) {
 
-            Intent intent = new Intent(Agenda.this, CoordActivity.class);
+            Intent intent = new Intent(CompteRendu.this, CoordActivity.class);
             startActivity(intent);
             onPause();
 
         } else if (id == R.id.nav_cpt) {
 
-            Intent intent = new Intent(Agenda.this, CompteRendu.class);
-            startActivity(intent);
-            onPause();
 
         } else if (id == R.id.nav_medic) {
 
@@ -128,24 +146,11 @@ public class Agenda extends MenuActivity
 
         }
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
-    //Detruire la task pour le logout
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        PreferencesManager preferencesManager = new PreferencesManager(this,null);
-        if (preferencesManager.getRememberLogin() == false) {
-            // stop service and clear preferences
-            preferencesManager.logout();
-        }
-    }
 }

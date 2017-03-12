@@ -2,8 +2,8 @@ package com.csgroup.eventsched;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,11 +33,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+
+
         // store views references
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         chkRemember = (CheckBox) findViewById(R.id.chkRemember);
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +50,11 @@ public class MainActivity extends ActionBarActivity {
 
                 LoginTask loginTask = new LoginTask();
                 loginTask.execute(new String[]{email, password});
+
             }
         });
+
+
 
         chkRemember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
