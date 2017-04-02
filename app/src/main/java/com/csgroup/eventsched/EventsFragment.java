@@ -24,6 +24,7 @@ import java.util.List;
 
 public class EventsFragment extends Fragment {
 
+
     private ListView mEventsListView;
     private SimpleAdapter mAdapter;
 
@@ -34,7 +35,7 @@ public class EventsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_events, container, false);
         this.mEventsListView = (ListView) rootView.findViewById(R.id.listview_events);
         mEventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -51,6 +52,8 @@ public class EventsFragment extends Fragment {
 
 
         return rootView;
+
+
     }
 
     @Override

@@ -139,6 +139,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="0dp"
                         android:text="Filtres" />
+
                     <Button
                         android:id="@+id/btnRefreshSuggestions"
                         style="?android:attr/buttonStyleSmall"

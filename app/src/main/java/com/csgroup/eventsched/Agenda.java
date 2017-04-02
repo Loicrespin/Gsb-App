@@ -131,6 +131,7 @@ public class Agenda extends MenuActivity
 
         } else if (id == R.id.nav_loc) {
 
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -8,6 +8,7 @@
     android:weightSum="1"
     tools:context=".CoordActivity">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -61,28 +62,52 @@
           android:orientation="vertical"
           android:paddingRight="5dp">
 
+        <!-- events fragment-->
+          <EditText
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:hint="Chercher un praticien"
+              android:id="@+id/editText"
+              android:layout_gravity="center"/>
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Praticien"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
+          <Button
+              android:layout_width="wrap_content"
+              android:layout_height="35dp"
+              android:layout_gravity="right"
+              android:background="@drawable/rounded_validbutton"
+              android:textColor="#ffff"
+              android:textSize="15dp"
+              android:textAllCaps="false"
+              android:text="  Chercher  "
+              android:id="@+id/search"
+              android:layout_marginTop="-35dp"/>
 
-        <EditText
+          <Spinner
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:id="@+id/spinner1"
+              android:layout_below="@+id/search"
+              android:layout_marginTop="15dp" />
+
+
+
+          <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Date du rapport"
             android:textColor="#000000"
-            android:textSize="18dp"/>
+            android:textSize="15dp"
+            android:inputType="date"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:maxLength="20"
             android:hint="Motif de visite"
             android:textColor="#000000"
-            android:textSize="18dp"/>
+            android:textSize="15dp"/>
 
           <RelativeLayout
               android:layout_width="match_parent"
@@ -95,9 +120,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Bilan"
-            android:maxLines="10"
+            android:maxLength="380"
             android:textColor="#000000"
-            android:textSize="18dp"/>
+            android:textSize="15dp"/>
 
 
           </RelativeLayout>
@@ -124,7 +149,7 @@
             android:layout_marginTop="15dp"
             android:hint="Médicament"
             android:textColor="#000000"
-            android:textSize="18dp"/>
+            android:textSize="15dp"/>
 
               <Spinner
                   android:id="@+id/quantity"

@@ -34,7 +34,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="@string/version"
-        android:textColor="#ffff"
+        android:textColor="#E74C3C"
         android:textSize="10dp" />
 
 </RelativeLayout>

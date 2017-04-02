@@ -92,11 +92,9 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         COEFF = (TextView) findViewById(R.id.coeff);
         LIEUX = (TextView) findViewById(R.id.lieux);
 
-        //Bouton image de l'activity agenda pour l'ajout dévénement
-        makecall = (Button) findViewById(R.id.call);
 
         // setup SimpleCursorAdapter
-        myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from , to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
         // Fetch data from mysql table using AsyncTask
         new AsyncFetch().execute();
@@ -174,6 +172,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                     return true;
                 }
             });
+
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String s) {
@@ -355,7 +354,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
             try {
 
                 // Enter URL address where your php file resides or your JSON file address
-                url = new URL("http://192.168.1.16:80/eventsched/v1/spinner.php");
+                url = new URL("http://10.0.3.2:80/eventsched/v1/spinner.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block

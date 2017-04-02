@@ -85,7 +85,6 @@
         android:paddingRight="10dp">
 
 
-
         <!-- events fragment-->
         <fragment
             android:layout_width="match_parent"

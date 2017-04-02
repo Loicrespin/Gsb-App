@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "loic.crespin.app"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "0.4"
@@ -23,9 +23,13 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     //Volley Library
+    
+
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
+
 }

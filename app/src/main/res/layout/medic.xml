@@ -53,67 +53,36 @@
           android:layout_marginTop="65dp"
           android:orientation="vertical">
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nom"
+            android:text="Nom commercial :"
             android:textColor="#000000"
             android:textSize="18dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/prenom"
+            android:text="Famille : "
             android:textColor="#000000"
             android:textSize="18dp"/>
 
+
+          <RelativeLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:paddingBottom="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/adresse"
+            android:layout_marginTop="20dp"
+            android:text="Prix : "
             android:textColor="#000000"
             android:textSize="18dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ville"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/port"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tel"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/coeff"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lieux"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
+          </RelativeLayout>
 
       </LinearLayout>
 
@@ -121,103 +90,120 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginLeft="240dp"
-          android:layout_marginTop="65dp">
+          android:layout_marginTop="40dp">
 
         <TextView
-            android:id="@+id/nom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="noname"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-        <TextView
-            android:id="@+id/prenom"
+            android:id="@+id/nomm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="noprenom"
+            android:text="nope"
             android:textColor="#000000"
             android:textSize="18dp"/>
+
+          <TextView
+              android:id="@+id/famille"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="40dp"
+              android:text="nope"
+              android:textColor="#000000"
+              android:textSize="18dp"/>
 
       </RelativeLayout>
 
-      <RelativeLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="240dp"
-          android:layout_marginTop="125dp">
+        <TabHost
+            android:id="@+id/tabHost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/adresse"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="200dp"
+                android:orientation="vertical">
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    style="@style/tabwidget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TabWidget>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/tab1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/compo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="Aucun" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tab2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/effet"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Aucun" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tab3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/contre"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Aucun" />
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="noadresse"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="155dp">
+
+        <TextView
+            android:id="@+id/prix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nope"
             android:textColor="#000000"
             android:textSize="18dp"/>
 
-        <TextView
-            android:id="@+id/ville"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="noville"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-      </RelativeLayout>
-
-      <!-- Layout de lieux et coeff -->
-      <RelativeLayout
-          android:layout_width="wrap_content"
-          android:layout_height="50dp"
-          android:layout_marginBottom="15dp"
-          android:layout_marginLeft="240dp"
-          android:layout_marginTop="190dp">
-
-        <TextView
-            android:id="@+id/port"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="noPort"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-        <TextView
-            android:id="@+id/tel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="noTel"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-      </RelativeLayout>
-
-      <!-- Layout de lieux et coeff -->
-      <RelativeLayout
-          android:layout_width="wrap_content"
-          android:layout_height="50dp"
-          android:layout_marginBottom="15dp"
-          android:layout_marginLeft="240dp"
-          android:layout_marginTop="250dp">
-
-        <TextView
-            android:id="@+id/coeff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="noCoeff"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-
-        <TextView
-            android:id="@+id/lieux"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Nolieux"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="€"
+                android:textColor="#000000"
+                android:textSize="18dp"/>
 
       </RelativeLayout>
 
