@@ -12,14 +12,13 @@ import java.util.List;
  */
 public class JsonParser {
 
-
-
     private static final String API_ERROR = "error";
     private static final String API_ERROR_MESSAGE = "message";
     private static final String API_MESSAGE = "message";
     private static final String API_EVENTS_ARRAY = "events";
     private static final String API_PRATICIEN_ARRAY = "spinner.php";
     private static final String API_EVENT = "event";
+    private static final String API_MEDIC_ARRAY = "medic";
     private static final String API_MEMBERS_ARRAY = "members";
     private static final String API_COMMENTS_ARRAY = "comments";
     private static final String API_COMMENT = "comment";

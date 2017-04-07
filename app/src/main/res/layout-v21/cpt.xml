@@ -4,214 +4,190 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:orientation="vertical"
-    android:paddingTop="55dp"
     android:weightSum="1"
     tools:context=".CoordActivity">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="0dp"
-      android:orientation="vertical"
-      android:paddingLeft="5dp"
-      android:paddingRight="5dp">
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/event_bg"
-        android:paddingBottom="30dp">
+        android:background="@drawable/event_bg">
 
+    <TextView
+        android:id="@+id/tvEventdetailsTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="#000000"
+        android:paddingBottom="20dp"
+        android:paddingLeft="50dp"
+        android:paddingTop="20dp"
+        android:text="Compte Rendu"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ECF0F1"
+        android:textSize="15sp"
+        android:textStyle="bold|italic" />
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/create_new64_2"/>
 
-      <EditText
-          android:id="@+id/tvEventdetailsTitle"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:background="#34393E"
-          android:gravity="center"
-          android:paddingBottom="20dp"
-          android:paddingTop="20dp"
-          android:text="Titre"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:textColor="#ECF0F1"
-          android:textSize="16sp"
-          android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="65dp"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_assignment_black_24dp"
-            />
-
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginLeft="5dp"
-          android:layout_marginTop="60dp"
-          android:gravity="center"
-          android:orientation="vertical"
-          android:paddingRight="5dp">
-
-        <!-- events fragment-->
-          <EditText
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:hint="Chercher un praticien"
-              android:id="@+id/editText"
-              android:layout_gravity="center"/>
-
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="35dp"
-              android:layout_gravity="right"
-              android:background="@drawable/rounded_validbutton"
-              android:textColor="#ffff"
-              android:textSize="15dp"
-              android:textAllCaps="false"
-              android:text="  Chercher  "
-              android:id="@+id/search"
-              android:layout_marginTop="-35dp"/>
-
-          <Spinner
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:id="@+id/spinner1"
-              android:layout_below="@+id/search"
-              android:layout_marginTop="15dp" />
-
-
-
-          <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Date du rapport"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            android:inputType="date"/>
+            android:textSize="16dp"
+            android:text="Titre : "
+            android:textColor="#000000"/>
 
         <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:maxLength="20"
+            android:layout_marginTop="-30dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13dp"
+            android:hint="Saisir Titre" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Motif : "
+            android:textColor="#000000"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:maxLength="20"
+            android:layout_marginTop="-30dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13dp"
+            android:hint="Saisir motif" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Praticien : "
+            android:textColor="#000000"/>
+
+        <!-- praticien spinner-->
+        <Spinner
+            android:id="@+id/spinner"
+            android:spinnerMode="dialog"
+            android:layout_gravity="center"
+            android:layout_marginTop="-25dp"
+            android:layout_width="180dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textSize="16dp"
+            android:text="Bilan : "
+            android:textColor="#000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bilan_box_bg">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="380"
+            android:textSize="13dp"
+            android:hint="Saisir Bilan" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:maxLength="20"
-            android:hint="Motif de visite"
-            android:textColor="#000000"
-            android:textSize="15dp"/>
+            android:textSize="16dp"
+            android:text="Médicaments : "
+            android:textColor="#000000"/>
 
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="20dp"
-              android:background="@drawable/bilan_box_bg">
+        <!-- praticien spinner-->
+        <Spinner
+            android:id="@+id/spinner_medic"
+            android:spinnerMode="dialog"
+            android:layout_gravity="center"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="180dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/bilan"
+        <Button
+            android:layout_gravity="right"
+            android:id="@+id/add"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:background="@drawable/rounded_validbutton"
+            android:text="Ajouter"
+            android:textColor="#ffff"
+            android:textSize="15dp"
+            android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Bilan"
-            android:maxLength="380"
-            android:textColor="#000000"
-            android:textSize="15dp"/>
+            android:layout_gravity="center"
+            android:text="Vos échantillons"
+            android:textSize="16dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#000000"/>
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height= "wrap_content"
+            android:id="@+id/listview_medic"
+            android:divider="@null"
+            android:dividerHeight="0dp"/>
 
-          </RelativeLayout>
+    </LinearLayout>
 
-          <TextView
-              android:id="@+id/cpt"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="right"
-              android:layout_marginRight="5dp"
-              android:text="@string/carac"
-              android:textSize="10dp"/>
+</RelativeLayout>
 
-
-          <RelativeLayout
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="10dp"
-              android:layout_marginTop="20dp">
-
-        <AutoCompleteTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:hint="Médicament"
-            android:textColor="#000000"
-            android:textSize="15dp"/>
-
-              <Spinner
-                  android:id="@+id/quantity"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="130dp"
-                  android:layout_marginTop="25dp"
-                  android:hint="Quantité"
-                  android:textColor="#000000"
-                  android:textSize="18dp"/>
-
-          </RelativeLayout>
-
-          <Button
-              android:id="@+id/add"
-              android:layout_width="100dp"
-              android:layout_height="30dp"
-              android:layout_gravity="left"
-              android:layout_marginLeft="70dp"
-              android:layout_marginTop="0dp"
-              android:background="@drawable/rounded_validbutton"
-              android:text="Ajout"
-              android:textColor="#ffffff"
-              android:textSize="12dp"/>
-
-          <Button
-              android:id="@+id/sup"
-              android:layout_width="100dp"
-              android:layout_height="30dp"
-              android:layout_gravity="right"
-              android:layout_marginRight="70dp"
-              android:layout_marginTop="-30dp"
-              android:background="@drawable/rounded_suppbutton"
-              android:text="suppression"
-              android:textColor="#ffffff"
-              android:textSize="12dp"/>
-
-
-
-      </LinearLayout>
-
-
-
-
-      </RelativeLayout>
-
-      <Button
-          android:id="@+id/call"
-          android:layout_width="200dp"
-          android:layout_height="30dp"
-          android:layout_gravity="center"
-          android:layout_marginTop="50dp"
-          android:background="@drawable/rounded_validbutton"
-          android:text="Envoyer"
-          android:textColor="#ffffff"/>
-
-  </LinearLayout>
-
-
-    </ScrollView>
 
 
 </LinearLayout>
 
 
+</LinearLayout>

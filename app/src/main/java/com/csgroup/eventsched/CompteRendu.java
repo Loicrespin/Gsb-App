@@ -1,10 +1,9 @@
 package com.csgroup.eventsched;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,26 +12,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CompteRendu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, TextWatcher {
 
@@ -41,16 +45,22 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
     private EditText status;
     private TextView nbCharTxt;
 
-    /**Pour la recherche **/
-    Spinner spinner1;
-    EditText e;
-    InputStream is=null;
-    String result=null;
-    String line=null;
-    HttpURLConnection urlConnection = null;
+    /** For spinner Prat **/
+    ArrayList<String> listItems=new ArrayList<>();
+    ArrayAdapter<String> adapter;
+    Spinner sp;
 
-    String text;
-    String [] city = {"No suggestion"};
+    /** For spinner Medic **/
+    ArrayList<String> listItems2=new ArrayList<>();
+    ArrayAdapter<String> adapter2;
+    Spinner sp2;
+
+    /**Button ajout medic**/
+    Button Add;
+    ListView listView;
+    ArrayList<String> listItems3;
+    ArrayAdapter<String> adapter3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,30 +69,44 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build(); StrictMode.setThreadPolicy(policy);
 
-        spinner1 = (Spinner) findViewById(R.id.spinner1);
-        final List<String> list1 = new ArrayList<String>();
-        e = (EditText) findViewById(R.id.editText);
-        Button b = (Button) findViewById(R.id.search);
+        /**Instance Add button **/
+        Add = (Button) findViewById(R.id.add);
+        listView = (ListView) findViewById(R.id.listview_medic);
+        listItems3 = new ArrayList<String>();
+        adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, listItems3);
+        listView.setAdapter(adapter3);
+
+        /** Instance the Spinner Praticien **/
+        sp = (Spinner) findViewById(R.id.spinner);
+        adapter=new ArrayAdapter<String>(this,R.layout.spinner_layout,R.id.txt,listItems);
+        sp.setAdapter(adapter);
+        sp.setPrompt("Selectionner un Praticien");
+
+        /**Instance the Spinner Medic **/
+        sp2 = (Spinner) findViewById(R.id.spinner_medic);
+        adapter2=new ArrayAdapter<String>(this,R.layout.spinner_layout_medic,R.id.txt,listItems2);
+        sp2.setAdapter(adapter2);
+        sp2.setPrompt("Selectionner un Médicament");
+
+        /** Ajout du medicament par son id dans la liste **/
+        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                final Object item = parent.getItemAtPosition(pos);
+                Add.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        listItems3.add(item.toString());
+                        adapter3.notifyDataSetChanged();
+                    }
+                });
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
 
-        status = (EditText) findViewById(R.id.bilan);
-        status.addTextChangedListener(this);
-        nbCharTxt = (TextView) findViewById(R.id.cpt);
-        nbCharTxt.setTextColor(Color.GREEN);
-
-
-      Spinner spinner = (Spinner) findViewById(R.id.quantity);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.quantity_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        /**commande d'affichage du menu**/
+    /**commande d'affichage du menu**/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -91,86 +115,122 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//Toast.makeText(getApplicationContext(), "Invalid IP Address",Toast.LENGTH_LONG).show();
-
-                text = e.getText().toString(); //Here i am storing the entered text in the string format in text variable
-
-                ContentValues values = new ContentValues();
-                values.put("1", text);  // This will append the entered text in the url for filter purpose
-
-
-                try {
-
-                    URL url = new URL("http://10.0.3.2:80/eventsched/v1/compterendu.php?string1="+text);
-                    urlConnection = (HttpURLConnection) url.openConnection();
-                    urlConnection.setRequestMethod("POST");
-                    urlConnection.connect();
-                    is = urlConnection.getInputStream();
-                }
-                catch (Exception e)
-                {
-                    Log.e("Fail 1", e.toString());
-                }
-
-                try
-                {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
-                    StringBuilder sb = new StringBuilder();
-                    while ((line = reader.readLine()) != null)
-                    {
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                }
-                catch(Exception e)
-                {
-                    Log.e("Fail 2", e.toString());
-                }
-
-
-                try
-                {
-                    JSONArray JA=new JSONArray(result);
-                    JSONObject json= null;
-
-                    city = new String[JA.length()];
-
-
-                    for(int i=0;i<JA.length();i++)
-                    {
-                        json=JA.getJSONObject(i);
-                        city[i] = json.getString("nom");
-
-
-                    }
-//                    Toast.makeText(getApplicationContext(), "Data Loaded", Toast.LENGTH_LONG).show();
-
-                    for(int i=0;i<city.length;i++)
-                    {
-                        list1.add(city[i]);
-
-                    }
-
-                    spinner_fn();
-
-                }
-                catch(Exception e)
-                {
-
-                    Log.e("Fail 3", e.toString());
-
-
-                }
-
-
-            }
-        });
-
         }
+
+    public void onStart(){
+        super.onStart();
+        BackTask bt=new BackTask();
+        bt.execute();
+    }
+
+    /** Activition des tâches en Background **/
+    private class BackTask extends AsyncTask<Void,Void,Void> {
+        ArrayList<String> list;
+        ArrayList<String> list2;
+
+        protected void onPreExecute(){
+            super.onPreExecute();
+            list=new ArrayList<>();
+            list2=new ArrayList<>();
+        }
+
+        /**
+         * Connection for spinner
+         **/
+        protected Void doInBackground(Void... params) {
+            InputStream is = null;
+            String result = "";
+            String result2 = "";
+
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://10.0.3.2:80/eventsched/v1/spinner.php");
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                // Get our response as a String.
+                is = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //convert response to string
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    result += line;
+                }
+                is.close();
+                //result=sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // parse json data
+            try {
+                JSONArray jArray = new JSONArray(result);
+                for (int i = 0; i < jArray.length(); i++) {
+                    JSONObject jsonObject = jArray.getJSONObject(i);
+
+                    /** add praticien in array list **/
+                    String nomPrenom = jsonObject.getString("nom") + " " + jsonObject.getString("prenom");
+                    list.add(nomPrenom);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            /** For Spinner MEdic **/
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://10.0.3.2:80/eventsched/v1/medicament.php");
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                // Get our response as a String.
+                is = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            //convert response to string
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    result2 += line;
+                }
+                is.close();
+                //result=sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // parse json data
+            try {
+                JSONArray jArray = new JSONArray(result2);
+                for (int i = 0; i < jArray.length(); i++) {
+                    JSONObject jsonObject = jArray.getJSONObject(i);
+
+                    /** add praticien in array list **/
+                    String medic = jsonObject.getString("nom");
+                    list2.add(medic);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+            listItems.addAll(list);
+            listItems2.addAll(list2);
+            adapter.notifyDataSetChanged();
+            adapter2.notifyDataSetChanged();
+        }
+    }
+
 
 
     /** Changement du compteur de caractère **/
@@ -236,18 +296,6 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /** Remplissage de spinner **/
-    private void spinner_fn() {
-// TODO Auto-generated method stub
-
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, city);
-
-        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(dataAdapter1);
-
     }
 
     @Override
