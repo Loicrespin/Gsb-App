@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="292ae9b9b97c1fbe7706b268eac2e3550533191b">
+        sha1="9aa4c15d68475d5b1a714b31aa5ae8f86c770f5f">
         <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6ba5833db224e2899f72f8612f3ad73f5c282d18\classes.dex" />
     </item>
     <item
@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
         <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7120ade00072fc284b5fecf36fc798c04fc52dfc\classes.dex" />
     </item>
 
