@@ -214,6 +214,19 @@
 
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/contact"
+            android:background="@drawable/rounded_validbutton"
+            android:layout_gravity="center"
+            android:text="Contact"
+            android:textSize="15dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="30dp" />
+
     </LinearLayout>
+
+
 
 </LinearLayout>

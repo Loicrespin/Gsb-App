@@ -314,8 +314,6 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
         } else if (id == R.id.nav_medic) {
 
 
-        } else if (id == R.id.nav_loc) {
-
         }
 
 

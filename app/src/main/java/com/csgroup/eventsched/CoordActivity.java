@@ -1,15 +1,20 @@
 package com.csgroup.eventsched;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v4.widget.DrawerLayout;
@@ -20,7 +25,9 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +53,8 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     //For the search
     SearchView searchView = null;
 
-    Button makecall;
+    Button contact;
+    final Context context = this;
 
     //VISIT CARD
     TextView NOM = null;
@@ -92,9 +100,11 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         COEFF = (TextView) findViewById(R.id.coeff);
         LIEUX = (TextView) findViewById(R.id.lieux);
 
+        contact = (Button) findViewById(R.id.contact);
+
 
         // setup SimpleCursorAdapter
-        myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from , to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
         // Fetch data from mysql table using AsyncTask
         new AsyncFetch().execute();
@@ -109,9 +119,62 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        final Intent intent = new Intent(Intent.ACTION_CALL);
+
+        contact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_contact);
+
+                ImageButton newcall = (ImageButton) dialog.findViewById(R.id.phoner);
+
+                newcall.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        intent.setData(Uri.parse("tel:" + telrecup));
+                        startActivity(intent);
+
+
+
+                    }
+
+                });
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.cancel);
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -317,8 +380,6 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
             startActivity(intent);
             onPause();
 
-        } else if (id == R.id.nav_loc) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -413,6 +474,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
         }
 
+        /** Récupéreratio des données pour les praticiens **/
         @Override
         protected void onPostExecute(String result) {
 
@@ -433,6 +495,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
                     // Extract data from json and store into ArrayList
                     for (int i = 0; i < jArray.length(); i++) {
+
                         JSONObject json_data = jArray.getJSONObject(i);
                         dataList.add(json_data.getString("id"));
                         dataList.add(json_data.getString("nom"));

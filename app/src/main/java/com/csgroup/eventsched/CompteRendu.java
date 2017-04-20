@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,9 +26,13 @@ import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +41,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompteRendu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, TextWatcher {
 
@@ -61,6 +68,19 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
     private  ArrayList<String> listItems3=new ArrayList<>();
 
+    private ArrayList<Integer> listItems4=new ArrayList<>();
+
+    /** Envoie **/
+    private Button Send;
+    private int qty = 0;
+    private int medicament_id = 1;
+    private int drop = 0;
+    protected static int cpt;
+
+    private ArrayList<Integer> listeidmedic=new ArrayList<>();
+    protected static ArrayList<Integer> listeqty = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +95,14 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         nbCharTxt.setTextColor(Color.GREEN);
 
         Add = (Button) findViewById(R.id.add);
+        Send = (Button) findViewById(R.id.sendcpt);
 
         /**Add medic in Listview **/
         // Construct the data source
         final ArrayList<Medics> medicslist = new ArrayList<Medics>();
 // Create the adapter to convert the array to views
         final MedicAdapter adapter3 = new MedicAdapter(this, medicslist);
+
 // Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.listview_medic);
         listView.setAdapter(adapter3);
@@ -102,12 +124,14 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         /** Ajout du medicament par son id dans la liste **/
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, final long id) {
                 final Object item = parent.getItemAtPosition(pos);
 
                 test.nom = (String) item;
                 test.prix = listItems3.get((int) id);
 
+                /** pour crée echantillon **/
+                medicament_id = listItems4.get((int) id);
 
                 Add.setOnClickListener(new View.OnClickListener() {
 
@@ -115,6 +139,8 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
                         adapter3.add(new Medics(test.nom,test.prix));
                         adapter3.notifyDataSetChanged();
+                        listeidmedic.add(medicament_id);
+                        cpt++;
 
                     }
                 });
@@ -125,7 +151,24 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         });
 
 
-    /**commande d'affichage du menu**/
+        /** Envoie du compte rendu **/
+        Send.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                for(int i = 0; i < cpt; i++)
+                {
+                    medicament_id = listeidmedic.get(i);
+                    new Insert().execute();
+                }
+
+
+            }
+        });
+
+        /**commande d'affichage du menu**/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -133,7 +176,6 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
 
     }
@@ -149,6 +191,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         ArrayList<String> list;
         ArrayList<String> list2;
         ArrayList<String> list3;
+        ArrayList<Integer> list4;
 
 
         protected void onPreExecute(){
@@ -156,6 +199,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             list=new ArrayList<>();
             list2=new ArrayList<>();
             list3=new ArrayList<>();
+            list4=new ArrayList<>();
 
         }
 
@@ -239,7 +283,11 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
                     /** add medic in array list **/
                     String medic = jsonObject.getString("nom");
+                    String id = jsonObject.getString("id");
                     list2.add(medic);
+                    list4.add(Integer.valueOf(id));
+
+                    System.out.println(list4);
 
 
                 }
@@ -297,6 +345,8 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             listItems.addAll(list);
             listItems2.addAll(list2);
             listItems3.addAll(list3);
+            listItems4.addAll(list4);
+
 
             adapter.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
@@ -397,14 +447,87 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             startActivity(intent);
             finish();
 
-        } else if (id == R.id.nav_loc) {
-
         }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /** Classe pour ajouter echantillon **/
+    class Insert extends AsyncTask<String, String, String>
+    {
+
+        @Override
+        protected String doInBackground(String... params) {
+            // TODO Auto-generated method stub
+
+
+            List<NameValuePair> nameValuePair= new ArrayList<NameValuePair>(1);
+            nameValuePair.add(new BasicNameValuePair("qty",Integer.toString(qty)));
+            nameValuePair.add(new BasicNameValuePair("medicament_id",Integer.toString(medicament_id)));
+            System.out.println(nameValuePair.toString());
+
+            try
+            {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost("http://10.0.3.2:80/eventsched/v1/compterendu.php");
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+                HttpResponse response = httpClient.execute(httpPost);
+                HttpEntity entity = response.getEntity();
+                InputStream is = entity.getContent();
+
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (ClientProtocolException e) {
+                Log.e("ClientProtocolException","Client");
+                e.printStackTrace();
+            } catch (IOException e) {
+                Log.e("Ioexception","Ioexption");
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+    }
+
+    /** Classe pour ajouter echantillon **/
+    class Drop extends AsyncTask<String, String, String>
+    {
+
+        @Override
+        protected String doInBackground(String... params) {
+            // TODO Auto-generated method stub
+
+
+            List<NameValuePair> nameValuePair= new ArrayList<NameValuePair>(1);
+            nameValuePair.add(new BasicNameValuePair("qty",Integer.toString(qty)));
+            System.out.println(nameValuePair.toString());
+
+            try
+            {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost("http://10.0.3.2:80/eventsched/v1/compterendu.php");
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+                HttpResponse response = httpClient.execute(httpPost);
+                HttpEntity entity = response.getEntity();
+                InputStream is = entity.getContent();
+
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (ClientProtocolException e) {
+                Log.e("ClientProtocolException","Client");
+                e.printStackTrace();
+            } catch (IOException e) {
+                Log.e("Ioexception","Ioexption");
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
     }
 
 

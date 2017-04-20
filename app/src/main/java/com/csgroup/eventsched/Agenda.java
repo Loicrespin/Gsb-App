@@ -127,11 +127,6 @@ public class Agenda extends MenuActivity
             Intent intent = new Intent(Agenda.this, Medicaments.class);
             startActivity(intent);
             onPause();
-
-
-        } else if (id == R.id.nav_loc) {
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
