@@ -133,22 +133,25 @@
                 <FrameLayout
                     android:id="@android:id/tabcontent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_bg">
 
                     <LinearLayout
                         android:id="@+id/tab1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#ffffff"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/compo"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="10dp"
-                            android:paddingTop="10dp"
-                            android:text="Aucun" />
+                            android:text="Aucun"
+                            android:textColor="#000000"/>
 
                     </LinearLayout>
 
@@ -156,12 +159,17 @@
                         android:id="@+id/tab2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/effet"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:textColor="#000000"
                             android:text="Aucun" />
 
                     </LinearLayout>
@@ -170,12 +178,17 @@
                         android:id="@+id/tab3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/contre"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:textColor="#000000"
                             android:text="Aucun" />
 
                     </LinearLayout>
@@ -208,6 +221,18 @@
       </RelativeLayout>
 
     </RelativeLayout>
+
+      <Button
+          android:id="@+id/suppress"
+          android:layout_marginTop="20dp"
+          android:layout_marginBottom="20dp"
+          android:background="@drawable/rounded_suppbutton"
+          android:text="Supprimer medicament"
+          android:textColor="#ffffff"
+          android:textAllCaps="false"
+          android:layout_gravity="center"
+          android:layout_width="250dp"
+          android:layout_height="40dp" />
 
 
 </LinearLayout>

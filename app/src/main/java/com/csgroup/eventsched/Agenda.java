@@ -1,5 +1,7 @@
 package com.csgroup.eventsched;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,10 +13,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Agenda extends MenuActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    final Context context = this;
+    TextView emailing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,18 +79,48 @@ public class Agenda extends MenuActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+
+      final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_deco);
+
+        Button oui = (Button) dialog.findViewById(R.id.oui);
+        Button non = (Button) dialog.findViewById(R.id.non);
+
+        oui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PreferencesManager preferencesManager = new PreferencesManager(getApplicationContext(),null);
+                preferencesManager.logout();
+                dialog.dismiss();
+                finish();
+            }
+
+        });
+
+        // if button is clicked, close the custom dialog
+        non.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+
+
+            }
+        });
+
+        dialog.show();
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.agenda, menu);
+        emailing = (TextView) findViewById(R.id.menuemail);
+        emailing.setText(MainActivity.mailing);
+
         return true;
     }
 

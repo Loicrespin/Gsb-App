@@ -17,7 +17,7 @@ public class PreferencesManager {
     private String mPrefName;
 
     private final String PREF_API_KEY = "api_key";
-    private final String PREF_REMEMBER_LOGIN = "remember_login";
+    public static String PREF_REMEMBER_LOGIN = "remember_login";
     private final String PREF_USER_ID = "user_id";
     private final String PREF_EVENTS_IDS = "events_ids";
     private final String DEFAULT_PREF_NAME = "pref0";

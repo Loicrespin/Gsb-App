@@ -40,7 +40,6 @@ public class MenuActivity extends ActionBarActivity {
                     Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
-            onDestroy();
         }
 
         return super.onOptionsItemSelected(item);

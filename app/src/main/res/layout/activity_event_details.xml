@@ -41,7 +41,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/white_bg_bottom_shadow"
-                    android:paddingBottom="30dp"
+                    android:paddingBottom="20dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:paddingRight="10dp"
@@ -171,7 +171,32 @@
                         android:elegantTextHeight="false"
                         android:lineSpacingMultiplier="1.2"/>
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right">
+
+                        <TextView
+                            android:text="Done : "
+                            android:textColor="#000000"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Switch
+                            android:id="@+id/done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:checked="false"
+                            android:track="@drawable/rounded_validbutton"
+                            tools:checked="true" />
+
+                        </LinearLayout>
+
                 </LinearLayout>
+
             </LinearLayout>
 
 

@@ -64,6 +64,13 @@ public class AddEventActivity extends MenuActivity {
         btnCancel = (Button) findViewById(R.id.btnEventCancel);
         btnRefreshSuggestions = (Button) findViewById(R.id.btnRefreshSuggestions);
 
+        btnRefreshSuggestions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshSuggestions();
+            }
+        });
+
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,12 +88,7 @@ public class AddEventActivity extends MenuActivity {
             }
         });
 
-        btnRefreshSuggestions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                refreshSuggestions();
-            }
-        });
+
 
         etEventTitle = (EditText) findViewById(R.id.etEventTitle);
         etEventLocation = (EditText) findViewById(R.id.etEventLocation);
@@ -392,7 +394,7 @@ public class AddEventActivity extends MenuActivity {
                     if (freeTimesList != null) {
                         fillFreeTimesSpinner(freeTimesList);
                         Toast.makeText(AddEventActivity.this,
-                                "Suggested times refreshed", Toast.LENGTH_SHORT).show();
+                                "Suggestion des heures rafraichi", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JsonParser.JsonParserException e) {
@@ -485,7 +487,7 @@ public class AddEventActivity extends MenuActivity {
                                 .show();
 
                         Intent intent = new Intent(AddEventActivity.this,
-                                EventDetailsActivity.class);
+                                Agenda.class);
                         intent.putExtra("event", event);
                         startActivity(intent);
 

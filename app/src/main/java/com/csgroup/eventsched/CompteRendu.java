@@ -1,5 +1,7 @@
 package com.csgroup.eventsched;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -12,27 +14,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,45 +48,72 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class CompteRendu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, TextWatcher {
 
-
-    /** Compteur de caractère **/
+    /**
+     * Compteur de caractère
+     **/
     private EditText status;
     private TextView nbCharTxt;
 
-    /** For spinner Prat **/
-    private  ArrayList<String> listItems=new ArrayList<>();
+    /**
+     * For spinner Prat
+     **/
+    private ArrayList<String> listItems = new ArrayList<>();
     private ArrayAdapter<String> adapter;
     private Spinner sp;
 
-    /** For spinner Medic **/
-    private  ArrayList<String> listItems2=new ArrayList<>();
+    /**
+     * For spinner Medic
+     **/
+    private ArrayList<String> listItems2 = new ArrayList<>();
     private ArrayAdapter<String> adapter2;
     private Spinner sp2;
 
-    /**Button ajout medic**/
+    /**
+     * Button ajout medic
+     **/
     private Button Add;
-    private Medics test = new Medics("","");
+    private Medics test = new Medics("", "");
 
-    private  ArrayList<String> listItems3=new ArrayList<>();
+    private ArrayList<String> listItems3 = new ArrayList<>();
+    private ArrayList<Integer> listItems4 = new ArrayList<>();
+    private ArrayList<Integer> listItems5 = new ArrayList<>();
 
-    private ArrayList<Integer> listItems4=new ArrayList<>();
-
-    /** Envoie **/
+    /**
+     * Envoie
+     **/
     private Button Send;
-    private int qty = 0;
-    private int medicament_id = 1;
     private int drop = 0;
-    protected static int cpt;
+    protected static int cpt = 0;
 
-    private ArrayList<Integer> listeidmedic=new ArrayList<>();
-    protected static ArrayList<Integer> listeqty = new ArrayList<>();
+    public static ArrayList<Integer> listeidmedic;
+    public static ArrayList<Integer> listeqty;
 
+    /** Champ du compte rendu **/
+
+    Calendar myCalendar = Calendar.getInstance();
+
+    EditText titre;
+    EditText motif;
+    EditText datepick;
+    EditText bilan;
+
+    private String TITRE;
+    private String MOTIF;
+    private String DATE;
+    private String PRATICIEN_ID;
+    private String USER_ID;
+    private String BILAN;
+
+    /***************************************************************************/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +122,14 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /** Edit Text en tête de compte-rendu **/
+        titre = (EditText) findViewById(R.id.titlecpt);
+        motif = (EditText) findViewById(R.id.motifcpt);
+        datepick = (EditText) findViewById(R.id.date);
+        bilan = (EditText) findViewById(R.id.bilancpt);
+
         /** Nombre de caractère **/
-        status = (EditText) findViewById(R.id.bilan);
+        status = (EditText) findViewById(R.id.bilancpt);
         status.addTextChangedListener(this);
         nbCharTxt = (TextView) findViewById(R.id.indicator);
         nbCharTxt.setTextColor(Color.GREEN);
@@ -97,28 +137,55 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         Add = (Button) findViewById(R.id.add);
         Send = (Button) findViewById(R.id.sendcpt);
 
+        listeqty = new ArrayList<>();
+        listeidmedic = new ArrayList<>();
+
         /**Add medic in Listview **/
-        // Construct the data source
         final ArrayList<Medics> medicslist = new ArrayList<Medics>();
-// Create the adapter to convert the array to views
         final MedicAdapter adapter3 = new MedicAdapter(this, medicslist);
 
-// Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.listview_medic);
         listView.setAdapter(adapter3);
 
 
         /** Instance the Spinner Praticien **/
         sp = (Spinner) findViewById(R.id.spinner);
-        adapter=new ArrayAdapter<String>(this,R.layout.spinner_layout,R.id.txt,listItems);
+        adapter = new ArrayAdapter<String>(this, R.layout.spinner_layout, R.id.txt, listItems);
         sp.setAdapter(adapter);
         sp.setPrompt("Selectionner un Praticien");
 
         /**Instance the Spinner Medic **/
         sp2 = (Spinner) findViewById(R.id.spinner_medic);
-        adapter2=new ArrayAdapter<String>(this,R.layout.spinner_layout_medic,R.id.txt,listItems2);
+        adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_layout_medic, R.id.txt, listItems2);
         sp2.setAdapter(adapter2);
         sp2.setPrompt("Selectionner un Médicament");
+
+        /** Sélectionneur de date **/
+        datepick.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(CompteRendu.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        /** Récupérer id praticien **/
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, final long id) {
+                final Object item = parent.getItemAtPosition(pos);
+
+                PRATICIEN_ID = String.valueOf(listItems5.get(pos));
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
 
 
         /** Ajout du medicament par son id dans la liste **/
@@ -130,17 +197,18 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
                 test.nom = (String) item;
                 test.prix = listItems3.get((int) id);
 
-                /** pour crée echantillon **/
-                medicament_id = listItems4.get((int) id);
+                drop = listItems4.get((int) id);
+
 
                 Add.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
 
-                        adapter3.add(new Medics(test.nom,test.prix));
+                        adapter3.add(new Medics(test.nom, test.prix));
                         adapter3.notifyDataSetChanged();
-                        listeidmedic.add(medicament_id);
-                        cpt++;
+                        listeidmedic.add(drop);
+
+
 
                     }
                 });
@@ -158,12 +226,31 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             @Override
             public void onClick(View v) {
 
-                for(int i = 0; i < cpt; i++)
-                {
-                    medicament_id = listeidmedic.get(i);
-                    new Insert().execute();
+                TITRE = titre.toString();
+                MOTIF = motif.toString();
+                DATE = datepick.toString();
+                BILAN = bilan.toString();
+                USER_ID = "";
+
+
+                for(int i = 0; i < listeidmedic.size(); i++) {
+
+                    postNewEchantillon(getApplicationContext(), listeqty.get(i), listeidmedic.get(i));
+
                 }
 
+                    Context context = getApplicationContext();
+                    CharSequence text = "Echantillon envoyé";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    /** Rénitialisation des variables après envoie **/
+                    adapter3.clear();
+                    cpt = 0;
+                    listeqty.clear();
+                    listeidmedic.clear();
 
             }
         });
@@ -180,26 +267,30 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
     }
 
-    public void onStart(){
+    public void onStart() {
         super.onStart();
-        BackTask bt=new BackTask();
+        BackTask bt = new BackTask();
         bt.execute();
     }
 
-    /** Activition des tâches en Background **/
-    private class BackTask extends AsyncTask<Void,Void,Void> {
+    /**
+     * Activition des tâches en Background
+     **/
+    private class BackTask extends AsyncTask<Void, Void, Void> {
         ArrayList<String> list;
         ArrayList<String> list2;
         ArrayList<String> list3;
         ArrayList<Integer> list4;
+        ArrayList<Integer> list5;
 
 
-        protected void onPreExecute(){
+        protected void onPreExecute() {
             super.onPreExecute();
-            list=new ArrayList<>();
-            list2=new ArrayList<>();
-            list3=new ArrayList<>();
-            list4=new ArrayList<>();
+            list = new ArrayList<>();
+            list2 = new ArrayList<>();
+            list3 = new ArrayList<>();
+            list4 = new ArrayList<>();
+            list5 = new ArrayList<>();
 
         }
 
@@ -243,7 +334,10 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
                     /** add praticien in array list **/
                     String nomPrenom = jsonObject.getString("nom") + " " + jsonObject.getString("prenom");
+                    String idp = jsonObject.getString("id");
+
                     list.add(nomPrenom);
+                    list5.add(Integer.valueOf(idp));
 
                 }
             } catch (JSONException e) {
@@ -346,6 +440,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             listItems2.addAll(list2);
             listItems3.addAll(list3);
             listItems4.addAll(list4);
+            listItems5.addAll(list5);
 
 
             adapter.notifyDataSetChanged();
@@ -354,9 +449,10 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
     }
 
 
-
-    /** Changement du compteur de caractère **/
-   @Override
+    /**
+     * Changement du compteur de caractère
+     **/
+    @Override
     public void afterTextChanged(Editable editable) {
         int nbChar = status.getText().toString().length();
         int leftChar = 380 - nbChar;
@@ -364,8 +460,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         nbCharTxt.setTextColor(Color.GREEN);
         if (leftChar < 10 && leftChar >= 0)
             nbCharTxt.setTextColor(Color.YELLOW);
-        else if (leftChar <= 0)
-        {
+        else if (leftChar <= 0) {
             nbCharTxt.setTextColor(Color.RED);
             nbCharTxt.setText(Integer.toString(Math.abs(leftChar)) + " caracteres en trop");
         }
@@ -455,80 +550,81 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         return true;
     }
 
-    /** Classe pour ajouter echantillon **/
-    class Insert extends AsyncTask<String, String, String>
-    {
-
-        @Override
-        protected String doInBackground(String... params) {
-            // TODO Auto-generated method stub
 
 
-            List<NameValuePair> nameValuePair= new ArrayList<NameValuePair>(1);
-            nameValuePair.add(new BasicNameValuePair("qty",Integer.toString(qty)));
-            nameValuePair.add(new BasicNameValuePair("medicament_id",Integer.toString(medicament_id)));
-            System.out.println(nameValuePair.toString());
+    /**
+     * Classe pour ajouter echantillon
+     **/
+        public void postNewEchantillon (Context context,final Integer qty, final Integer medicament_id){
 
-            try
-            {
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://10.0.3.2:80/eventsched/v1/compterendu.php");
-                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-                HttpResponse response = httpClient.execute(httpPost);
-                HttpEntity entity = response.getEntity();
-                InputStream is = entity.getContent();
 
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (ClientProtocolException e) {
-                Log.e("ClientProtocolException","Client");
-                e.printStackTrace();
-            } catch (IOException e) {
-                Log.e("Ioexception","Ioexption");
-                e.printStackTrace();
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest sr = new StringRequest(Request.Method.POST, "http://10.0.3.2:80/eventsched/v1/compterendu.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                if(TITRE != "" && MOTIF != "" && DATE != "" && PRATICIEN_ID != "" && BILAN != "" && USER_ID != ""){
+
+                    params.put("titre", TITRE);
+                    params.put("motif", MOTIF);
+                    params.put("date", DATE);
+                    params.put("praticien_id", PRATICIEN_ID);
+                    params.put("user_id", USER_ID);
+                    params.put("bilan", BILAN);
+
+                }
+
+                params.put("qty", Integer.toString(qty));
+                params.put("medicament_id", Integer.toString(medicament_id));
+
+                return params;
             }
 
-            return null;
-        }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
 
+        queue.add(sr);
     }
 
-    /** Classe pour ajouter echantillon **/
-    class Drop extends AsyncTask<String, String, String>
-    {
+    private void updateLabel() {
 
-        @Override
-        protected String doInBackground(String... params) {
-            // TODO Auto-generated method stub
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-
-            List<NameValuePair> nameValuePair= new ArrayList<NameValuePair>(1);
-            nameValuePair.add(new BasicNameValuePair("qty",Integer.toString(qty)));
-            System.out.println(nameValuePair.toString());
-
-            try
-            {
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://10.0.3.2:80/eventsched/v1/compterendu.php");
-                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-                HttpResponse response = httpClient.execute(httpPost);
-                HttpEntity entity = response.getEntity();
-                InputStream is = entity.getContent();
-
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (ClientProtocolException e) {
-                Log.e("ClientProtocolException","Client");
-                e.printStackTrace();
-            } catch (IOException e) {
-                Log.e("Ioexception","Ioexption");
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
+        datepick.setText(sdf.format(myCalendar.getTime()));
     }
 
 
-}
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+
+    };
+
+
+    }
+
+

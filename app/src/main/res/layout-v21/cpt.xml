@@ -62,6 +62,7 @@
             android:textColor="#000000"/>
 
         <EditText
+            android:id="@+id/titlecpt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -80,6 +81,7 @@
             android:textColor="#000000"/>
 
         <EditText
+            android:id="@+id/motifcpt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -98,16 +100,18 @@
             android:textColor="#000000"/>
 
         <EditText
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="date"
+            android:inputType= "date"
             android:layout_gravity="center"
             android:maxLines="1"
             android:maxLength="10"
             android:layout_marginTop="-30dp"
             android:layout_marginBottom="10dp"
             android:textSize="13dp"
-            android:hint="Saisir Date" />
+            android:hint="Saisir Date"
+            android:focusable="false"/>
 
 
         <TextView
@@ -142,7 +146,7 @@
             android:background="@drawable/bilan_box_bg">
 
         <EditText
-            android:id="@+id/bilan"
+            android:id="@+id/bilancpt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLength="385"

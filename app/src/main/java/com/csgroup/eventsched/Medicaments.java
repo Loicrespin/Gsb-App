@@ -20,6 +20,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -60,12 +61,15 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
     TextView PRIX = null;
 
     //TRANSFERT DE DONNEES
-    String nomrecup;
+    protected static String nomrecup = "";
     String famillerecup;
     String compositionrecup;
     String effetrecup;
     String contrerecup;
     String prixrecup;
+
+
+    Button supp;
 
     private SimpleCursorAdapter myAdapter;
     private String[] strArrData = {"No Suggestions"};
@@ -81,7 +85,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
         final String[] from = new String[]{"nom"};
         final int[] to = new int[]{android.R.id.text1};
 
-        TabHost host = (TabHost)findViewById(tabHost);
+        TabHost host = (TabHost) findViewById(tabHost);
         host.setup();
 
         //Element pour la carte de visite
@@ -117,8 +121,49 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
         spec.setIndicator("Contre indication");
         host.addTab(spec);
 
+        supp = (Button) findViewById(R.id.suppress);
 
-        //commande d'affichage du menu
+        supp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if(nomrecup == "")
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Veuillez chercher un médicament !";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                }
+
+                else {
+
+                    new Drop_medic().execute();
+
+                    Context context = getApplicationContext();
+                    CharSequence text = "Médicament supprimé !";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    NOM.setText("");
+                    FAMILLE.setText("");
+                    COMPOSITION.setText("");
+                    EFFET.setText("");
+                    CONTRE.setText("");
+                    PRIX.setText("");
+
+                }
+
+            }
+
+        });
+
+                //commande d'affichage du menu
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -129,7 +174,6 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
         navigationView.setNavigationItemSelectedListener(this);
 
     }
-
 
 
     @Override
@@ -180,7 +224,6 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
 
                     return true;
                 }
-
 
                 @Override
                 public boolean onSuggestionSelect(int position) {
@@ -255,7 +298,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
     }
 
 
-        @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -350,7 +393,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
             try {
 
                 // Enter URL address where your php file resides or your JSON file address
-                url = new URL("http://10.0.3.2:80/eventsched/v1/medicament.php");
+                url = new URL("http://172.20.10.3:80/eventsched/v1/medicament.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -396,7 +439,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
                     return (result.toString());
 
                 } else {
-                    return("Connection error");
+                    return ("Connection error");
                 }
 
             } catch (IOException e) {
@@ -417,11 +460,11 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
             pdLoading.dismiss();
 
 
-            if(result.equals("no rows")) {
+            if (result.equals("no rows")) {
 
                 // Do some action if no data from database
 
-            }else{
+            } else {
 
                 try {
 
@@ -458,3 +501,4 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
     }
 
 }
+

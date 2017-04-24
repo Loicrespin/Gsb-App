@@ -194,7 +194,7 @@ public class RetrieveNewEventsService extends Service {
                     Notification notification = new NotificationCompat.Builder(context)
                             .setContentTitle(ev.getTitle())
                             .setContentText(ev.getDetails())
-                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setSmallIcon(R.drawable.ic_launcher)
                             .setContentIntent(pIntent)
                             .setAutoCancel(true)
                             .setSound(soundUri)

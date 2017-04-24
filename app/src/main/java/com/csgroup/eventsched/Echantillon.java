@@ -7,12 +7,10 @@ package com.csgroup.eventsched;
 public class Echantillon {
 
     public int qty;
-    public int medicament_id;
 
-    public Echantillon(int qty, int medicament_id) {
+    public Echantillon(int qty) {
 
         this.qty = qty;
-        this.medicament_id = medicament_id;
 
     }
 

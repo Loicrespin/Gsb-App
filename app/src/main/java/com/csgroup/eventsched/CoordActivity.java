@@ -72,7 +72,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     String adresserecup;
     String villerecup;
     String portrecup;
-    String telrecup;
+    String telrecup = "";
     String coeffrecup;
     String lieurecup;
 
@@ -100,8 +100,8 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         COEFF = (TextView) findViewById(R.id.coeff);
         LIEUX = (TextView) findViewById(R.id.lieux);
 
-        contact = (Button) findViewById(R.id.contact);
 
+        contact = (Button) findViewById(R.id.contact);
 
         // setup SimpleCursorAdapter
         myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
@@ -131,15 +131,21 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
                 ImageButton newcall = (ImageButton) dialog.findViewById(R.id.phoner);
 
+                /** MAke a call **/
                 newcall.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
+                        if(telrecup == "")
+                        {
+                            Toast.makeText(context, "Veuillez chercher un contact", Toast.LENGTH_SHORT).show();
 
-                        intent.setData(Uri.parse("tel:" + telrecup));
-                        startActivity(intent);
+                        } else {
 
+                            intent.setData(Uri.parse("tel:" + telrecup));
+                            startActivity(intent);
 
+                        }
 
                     }
 

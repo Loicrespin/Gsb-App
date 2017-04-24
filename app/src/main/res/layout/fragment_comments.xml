@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="envoyer"
                 android:id="@+id/btnCommentSend"
-                android:background="#33FF66"
+                android:background="@drawable/rounded_validbutton"
                 android:layout_weight="30"
                 android:textSize="16sp"
                 style="@style/DefaultButtonText"

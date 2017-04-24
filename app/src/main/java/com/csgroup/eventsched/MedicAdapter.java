@@ -88,7 +88,8 @@ public class MedicAdapter extends ArrayAdapter<Medics> {
             public void onClick(View v) {
 
                 remove(medics);
-                CompteRendu.cpt--;
+                CompteRendu.listeqty.remove(position);
+                CompteRendu.listeidmedic.remove(position);
 
             }
         });

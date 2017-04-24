@@ -22,9 +22,10 @@ public class MainActivity extends ActionBarActivity {
     private EditText etEmail, etPassword;
     private Button btnLogin;
     private CheckBox chkRemember;
-    private boolean rememberLogin = false;
+    protected static boolean rememberLogin = false;
+    protected static String mailing = "";
 
-    private final String LOG_TAG = MainActivity.class.getSimpleName();
+    protected static final String LOG_TAG = MainActivity.class.getSimpleName();
     private final boolean CLEAR_PREFERENCES = false;
 
 
@@ -55,11 +56,11 @@ public class MainActivity extends ActionBarActivity {
         });
 
 
-
         chkRemember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 rememberLogin = isChecked;
+
             }
         });
     }
@@ -67,6 +68,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
 
         if (CLEAR_PREFERENCES) {
             PreferencesManager prefManager = new PreferencesManager(this, null);
@@ -161,7 +163,8 @@ public class MainActivity extends ActionBarActivity {
                     User user = JsonParser.parseLogin(jsonResponse);
                     // if parsing was successful
                     if (user != null) {
-                        Toast.makeText(MainActivity.this, "Connexion réussi !", Toast.LENGTH_LONG)
+                        mailing = user.getEmail().toString();
+                        Toast.makeText(MainActivity.this, "Bienvenue " + user.getName().toString() + " !", Toast.LENGTH_LONG)
                                 .show();
                         Log.v(LOG_TAG, "Parsed Login json: " + user.toString());
 
