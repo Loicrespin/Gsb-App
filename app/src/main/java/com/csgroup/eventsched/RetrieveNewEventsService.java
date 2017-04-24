@@ -94,7 +94,7 @@ public class RetrieveNewEventsService extends Service {
             }
         };
 
-        timer.schedule(doAsynchronousTask, 0, 9000); //execute in every 5000 ms
+        timer.schedule(doAsynchronousTask, 0, 9000); //execute in every 9000 ms
     }
 
     private class FetchNewEvents extends AsyncTask<Void, Void, String> {

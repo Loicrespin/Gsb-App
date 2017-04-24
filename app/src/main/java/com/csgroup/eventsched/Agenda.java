@@ -3,6 +3,7 @@ package com.csgroup.eventsched;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -116,10 +117,14 @@ public class Agenda extends MenuActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
+        // Restore preferences
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, 0);
+        String emailtete = settings.getString("silentmail", null);
+
         getMenuInflater().inflate(R.menu.agenda, menu);
         emailing = (TextView) findViewById(R.id.menuemail);
-        emailing.setText(MainActivity.mailing);
+        emailing.setText(emailtete);
 
         return true;
     }

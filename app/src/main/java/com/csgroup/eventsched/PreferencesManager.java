@@ -26,6 +26,7 @@ public class PreferencesManager {
         this.mAppContext = appContext;
         this.mPrefName = (prefName == null) ? DEFAULT_PREF_NAME : prefName;
         this.mPref = appContext.getSharedPreferences(this.mPrefName, 0);
+        this.mPref.edit().commit();
     }
 
     private void setString(String key, String value) {

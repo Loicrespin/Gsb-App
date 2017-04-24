@@ -1,6 +1,7 @@
 package com.csgroup.eventsched;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -23,11 +24,13 @@ public class MainActivity extends ActionBarActivity {
     private Button btnLogin;
     private CheckBox chkRemember;
     protected static boolean rememberLogin = false;
-    protected static String mailing = "";
+    protected static String rememberemail = null;
+    protected static String remembername = null;
 
     protected static final String LOG_TAG = MainActivity.class.getSimpleName();
     private final boolean CLEAR_PREFERENCES = false;
 
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class MainActivity extends ActionBarActivity {
                 LoginTask loginTask = new LoginTask();
                 loginTask.execute(new String[]{email, password});
 
+
+
             }
         });
 
@@ -63,12 +68,12 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
 
         if (CLEAR_PREFERENCES) {
             PreferencesManager prefManager = new PreferencesManager(this, null);
@@ -79,6 +84,15 @@ public class MainActivity extends ActionBarActivity {
         // and we should redirect him to HomeActivity
         if (!loginRequired()) {
             this.rememberLogin = true;
+
+            // Restore preferences
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            String silent = settings.getString("silentMode", null);
+
+
+            Toast.makeText(MainActivity.this, "Bienvenue "  + silent +  " !", Toast.LENGTH_LONG)
+                    .show();
+
             startActivity(new Intent(this, Agenda.class));
             finish();
         }
@@ -163,7 +177,21 @@ public class MainActivity extends ActionBarActivity {
                     User user = JsonParser.parseLogin(jsonResponse);
                     // if parsing was successful
                     if (user != null) {
-                        mailing = user.getEmail().toString();
+
+                        rememberemail = user.getEmail();
+                        remembername = user.getName();
+
+                        // We need an Editor object to make preference changes.
+                        // All objects are from android.context.Context
+                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString("silentMode", remembername);
+                        editor.putString("silentmail", rememberemail);
+
+                        // Commit the edits!
+                        editor.commit();
+
+
                         Toast.makeText(MainActivity.this, "Bienvenue " + user.getName().toString() + " !", Toast.LENGTH_LONG)
                                 .show();
                         Log.v(LOG_TAG, "Parsed Login json: " + user.toString());
