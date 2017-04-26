@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
     protected static boolean rememberLogin = false;
     protected static String rememberemail = null;
     protected static String remembername = null;
+    protected static String rememberid = null;
 
     protected static final String LOG_TAG = MainActivity.class.getSimpleName();
     private final boolean CLEAR_PREFERENCES = false;
@@ -88,7 +89,9 @@ public class MainActivity extends ActionBarActivity {
             // Restore preferences
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
             String silent = settings.getString("silentMode", null);
+            String id = settings.getString("silentid", null);
 
+            System.out.println("ID USER : " + id);
 
             Toast.makeText(MainActivity.this, "Bienvenue "  + silent +  " !", Toast.LENGTH_LONG)
                     .show();
@@ -180,6 +183,7 @@ public class MainActivity extends ActionBarActivity {
 
                         rememberemail = user.getEmail();
                         remembername = user.getName();
+                        rememberid = String.valueOf(user.getId());
 
                         // We need an Editor object to make preference changes.
                         // All objects are from android.context.Context
@@ -187,6 +191,9 @@ public class MainActivity extends ActionBarActivity {
                         SharedPreferences.Editor editor = settings.edit();
                         editor.putString("silentMode", remembername);
                         editor.putString("silentmail", rememberemail);
+                        editor.putString("silentid", rememberid);
+
+
 
                         // Commit the edits!
                         editor.commit();

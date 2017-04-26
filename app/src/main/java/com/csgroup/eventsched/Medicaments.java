@@ -393,7 +393,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
             try {
 
                 // Enter URL address where your php file resides or your JSON file address
-                url = new URL("http://172.20.10.3:80/eventsched/v1/medicament.php");
+                url = new URL("http://10.0.2.2:80/eventsched/v1/medicament.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block

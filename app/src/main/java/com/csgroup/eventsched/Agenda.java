@@ -105,6 +105,7 @@ public class Agenda extends MenuActivity
             public void onClick(View v) {
 
                 dialog.dismiss();
+                finish();
 
 
             }

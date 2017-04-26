@@ -3,6 +3,7 @@ package com.csgroup.eventsched;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -96,6 +97,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
     public static ArrayList<Integer> listeidmedic;
     public static ArrayList<Integer> listeqty;
+    
 
     /** Champ du compte rendu **/
 
@@ -112,6 +114,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
     private String PRATICIEN_ID;
     private String USER_ID;
     private String BILAN;
+
 
     /***************************************************************************/
 
@@ -179,6 +182,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
                 final Object item = parent.getItemAtPosition(pos);
 
                 PRATICIEN_ID = String.valueOf(listItems5.get(pos));
+                System.out.println("PRATICIEN_ID : " + PRATICIEN_ID);
 
             }
 
@@ -199,7 +203,6 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
                 drop = listItems4.get((int) id);
 
-
                 Add.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
@@ -207,8 +210,6 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
                         adapter3.add(new Medics(test.nom, test.prix));
                         adapter3.notifyDataSetChanged();
                         listeidmedic.add(drop);
-
-
 
                     }
                 });
@@ -226,27 +227,36 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             @Override
             public void onClick(View v) {
 
-                TITRE = titre.toString();
-                MOTIF = motif.toString();
-                DATE = datepick.toString();
-                BILAN = bilan.toString();
-                USER_ID = "";
+                SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, 0);
+                String iduser = settings.getString("silentid", null);
 
+                TITRE = titre.getText().toString();
+                MOTIF = motif.getText().toString();
+                BILAN = bilan.getText().toString();
+                USER_ID = iduser;
+
+                postNewCompterendu(getApplicationContext(), TITRE, MOTIF, DATE, PRATICIEN_ID, USER_ID, BILAN);
 
                 for(int i = 0; i < listeidmedic.size(); i++) {
 
-                    postNewEchantillon(getApplicationContext(), listeqty.get(i), listeidmedic.get(i));
+                   postNewEchantillon(getApplicationContext(), listeqty.get(i), listeidmedic.get(i));
 
                 }
 
                     Context context = getApplicationContext();
-                    CharSequence text = "Echantillon envoyé";
+                    CharSequence text = "Compte rendu envoyé";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
 
                     /** Rénitialisation des variables après envoie **/
+
+                    titre.setText("");
+                    motif.setText("");
+                    datepick.setText("");
+                    bilan.setText("");
+
                     adapter3.clear();
                     cpt = 0;
                     listeqty.clear();
@@ -264,14 +274,13 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
     }
 
     public void onStart() {
         super.onStart();
         BackTask bt = new BackTask();
         bt.execute();
-    }
+}
 
     /**
      * Activition des tâches en Background
@@ -305,7 +314,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.3.2:80/eventsched/v1/spinner.php");
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/spinner.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -347,7 +356,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             /** For Spinner MEdic **/
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.3.2:80/eventsched/v1/medicament.php");
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/medicament.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -392,7 +401,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             /** For Spinner MEdic **/
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.3.2:80/eventsched/v1/medicament.php");
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/medicament.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -449,9 +458,9 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
     }
 
 
-    /**
-     * Changement du compteur de caractère
-     **/
+            /**
+             * Changement du compteur de caractère
+             **/
     @Override
     public void afterTextChanged(Editable editable) {
         int nbChar = status.getText().toString().length();
@@ -550,16 +559,14 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         return true;
     }
 
-
-
     /**
      * Classe pour ajouter echantillon
      **/
-        public void postNewEchantillon (Context context,final Integer qty, final Integer medicament_id){
+    public static void postNewCompterendu(Context context, final String titre, final String motif, final String date, final String praticien_id, final String users_id, final String bilan){
 
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST, "http://10.0.3.2:80/eventsched/v1/compterendu.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/compterendu.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -569,31 +576,65 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             public void onErrorResponse(VolleyError error) {
 
             }
-        }) {
+        }){
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                if(TITRE != "" && MOTIF != "" && DATE != "" && PRATICIEN_ID != "" && BILAN != "" && USER_ID != ""){
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
 
-                    params.put("titre", TITRE);
-                    params.put("motif", MOTIF);
-                    params.put("date", DATE);
-                    params.put("praticien_id", PRATICIEN_ID);
-                    params.put("user_id", USER_ID);
-                    params.put("bilan", BILAN);
-
-                }
-
-                params.put("qty", Integer.toString(qty));
-                params.put("medicament_id", Integer.toString(medicament_id));
+                params.put("titre", titre);
+                params.put("motif",motif);
+                params.put("date", date);
+                params.put("praticien_id", praticien_id);
+                params.put("users_id", users_id);
+                params.put("bilan", bilan);
 
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
+    /**
+     * Classe pour ajouter echantillon
+     **/
+    public static void postNewEchantillon(Context context, final int qty, final int medicament_id){
+
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/addechantillon.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+
+                params.put("qty", String.valueOf(qty));
+                params.put("medicament_id", String.valueOf(medicament_id));
+
+                System.out.println(params);
+                return params;
+
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
                 return params;
             }
         };
@@ -607,8 +648,14 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         datepick.setText(sdf.format(myCalendar.getTime()));
-    }
 
+        String myFormat2 = "yyyy/MM/dd";
+        SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat2, Locale.US);
+
+        DATE = sdf2.format(myCalendar.getTime());
+        System.out.println("DATE : " + DATE);
+
+    }
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -620,6 +667,8 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
+
+
         }
 
     };

@@ -140,7 +140,7 @@ public class EventDetailsActivity extends MenuActivity {
             try
             {
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://172.20.10.3:80/eventsched/v1/deleteEvent.php");
+                HttpPost httpPost = new HttpPost("http://10.0.2.2:80/eventsched/v1/deleteEvent.php");
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
                 HttpResponse response = httpClient.execute(httpPost);
                 HttpEntity entity = response.getEntity();
