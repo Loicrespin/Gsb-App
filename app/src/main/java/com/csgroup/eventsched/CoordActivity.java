@@ -100,7 +100,6 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         COEFF = (TextView) findViewById(R.id.coeff);
         LIEUX = (TextView) findViewById(R.id.lieux);
 
-
         contact = (Button) findViewById(R.id.contact);
 
         // setup SimpleCursorAdapter
@@ -204,6 +203,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) CoordActivity.this.getSystemService(Context.SEARCH_SERVICE);
 
+
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
         }
@@ -211,6 +211,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
             searchView.setSearchableInfo(searchManager.getSearchableInfo(CoordActivity.this.getComponentName()));
             searchView.setIconified(false);
             searchView.setSuggestionsAdapter(myAdapter);
+
 
             // Getting selected (CLICKED) item suggestion
             searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
@@ -410,7 +411,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
             super.onPreExecute();
 
             //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
+            pdLoading.setMessage("\tChargement...");
             pdLoading.setCancelable(false);
             pdLoading.show();
 

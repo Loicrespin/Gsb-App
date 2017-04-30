@@ -249,7 +249,6 @@ public class AddEventActivity extends MenuActivity {
         });
 
 
-
     }
 
     private void displayMembersList() {

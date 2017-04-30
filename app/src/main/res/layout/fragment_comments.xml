@@ -13,7 +13,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Comments"
+            android:text="Commentaires"
             android:id="@+id/textView33"
             android:layout_marginBottom="10dp"
             android:textColor="#ECF0F1"

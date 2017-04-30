@@ -113,7 +113,6 @@ public class Agenda extends MenuActivity
 
         dialog.show();
 
-
     }
 
     @Override

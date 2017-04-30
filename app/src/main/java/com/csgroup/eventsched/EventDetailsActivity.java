@@ -2,29 +2,22 @@ package com.csgroup.eventsched;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class EventDetailsActivity extends MenuActivity {
@@ -32,7 +25,9 @@ public class EventDetailsActivity extends MenuActivity {
     private Event mEvent;
     private TextView tvTitle, tvDate, tvTime,
             tvDuration, tvLocation, tvBody;
+
     private String event;
+    private int id_event;
 
     private Switch doneSwitch;
 
@@ -50,6 +45,7 @@ public class EventDetailsActivity extends MenuActivity {
 
         doneSwitch = (Switch) findViewById(R.id.done);
 
+
         doneSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -59,12 +55,12 @@ public class EventDetailsActivity extends MenuActivity {
                 if(isChecked){
 
 
-
-                    new Drop().execute();
+                    postDeleteComment(getApplicationContext(), id_event);
+                    postDeleteEvent(getApplicationContext(), event);
 
                     Context context = getApplicationContext();
                     CharSequence text = "Rendez-vous supprimé";
-                    int duration = Toast.LENGTH_LONG;
+                    int duration = Toast.LENGTH_SHORT;
                     finish();
 
                     Toast toast = Toast.makeText(context, text, duration);
@@ -85,6 +81,7 @@ public class EventDetailsActivity extends MenuActivity {
 
     private void setEventDetails() {
         event = mEvent.getTitle();
+        id_event = mEvent.getId();
         tvTitle.setText(this.mEvent.getTitle());
         tvDate.setText(this.mEvent.getDateString());
         tvTime.setText(this.mEvent.getTimeString());
@@ -126,40 +123,79 @@ public class EventDetailsActivity extends MenuActivity {
     }
 
     /** Classe pour ajouter echantillon **/
-    class Drop extends AsyncTask<String, String, String>
-    {
+    public static void postDeleteEvent(Context context, final String event){
 
-        @Override
-        protected String doInBackground(String... params) {
-            // TODO Auto-generated method stub
 
-            List<NameValuePair> nameValuePair= new ArrayList<NameValuePair>();
-            nameValuePair.add(new BasicNameValuePair("event",(event)));
-            System.out.println(nameValuePair.toString());
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/deleteEvent.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-            try
-            {
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://10.0.2.2:80/eventsched/v1/deleteEvent.php");
-                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-                HttpResponse response = httpClient.execute(httpPost);
-                HttpEntity entity = response.getEntity();
-                InputStream is = entity.getContent();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (ClientProtocolException e) {
-                Log.e("ClientProtocolException","Client");
-                e.printStackTrace();
-            } catch (IOException e) {
-                Log.e("Ioexception","Ioexption");
-                e.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+
+                params.put("event", event);
+
+                System.out.println(params);
+                return params;
+
             }
 
-            return null;
-        }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+
+        queue.add(sr);
+    }
+
+    /** Classe pour ajouter echantillon **/
+    public static void postDeleteComment(Context context, final int event_id){
 
 
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/deleteComment.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+
+                params.put("id", String.valueOf(event_id));
+
+                System.out.println(params);
+                return params;
+
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+
+        queue.add(sr);
     }
 
 }

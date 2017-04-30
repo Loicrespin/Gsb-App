@@ -7,71 +7,44 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="81a9fea3c4d06528c0e46d100cf6920019c3992f">
+        sha1="faf6dd4149b0719e6b3e606e4bb0fe3fe1a50694">
         <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6ba5833db224e2899f72f8612f3ad73f5c282d18\classes.dex" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\loicc\.android\build-cache\6a25005028dae2a4572f45b0549e73a646f94cfc\output\jars\libs\internal_impl-24.0.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0_5240a3894063bd9987bdda9d3a410ddff3b2e83c\classes.dex" />
+        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\internal_impl-24.0.0_5240a3894063bd9987bdda9d3a410ddff3b2e83c.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\loicc\.android\build-cache\aea4e64a4829a20d29af0092b4065a39ddce4653\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d2a009b4efdc2f678f854a940d97e907d83e0edb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\loicc\.android\build-cache\31e44ae6b2f95508d6bf81ebca6ad78575906d3e\output\jars\classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0b92858d2b0bf0e24521faf6288fddf1b77373ac\classes.dex" />
+        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_0b92858d2b0bf0e24521faf6288fddf1b77373ac.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\loicc\.android\build-cache\aea4e64a4829a20d29af0092b4065a39ddce4653\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_d2a009b4efdc2f678f854a940d97e907d83e0edb.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\loicc\.android\build-cache\90565dfaf605495845a6c2266f316ed75a2076f9\output\jars\classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_692f71465359b1db875157aeb5bba9f092501afd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\loicc\.android\build-cache\a0c71ad246a320c15f123baa9f8cc986f8b3151b\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_efe0d6a1c469ab24504892c5086306a8e3e86d09\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\loicc\.android\build-cache\9bc2cd88c9660f1a4a52adcffd063b8e615899e7\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ef1882339c46ea568a625162177f55ca7a7e1adc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\loicc\.android\build-cache\6a25005028dae2a4572f45b0549e73a646f94cfc\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
-        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8a023c6d93c4e6493b9cc4b502f43567ce98eb27\classes.dex" />
+        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_692f71465359b1db875157aeb5bba9f092501afd.jar" />
     </item>
     <item
         is-multidex="true"
@@ -81,6 +54,33 @@
         revision="25.0.0"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
         <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7120ade00072fc284b5fecf36fc798c04fc52dfc\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\loicc\.android\build-cache\a0c71ad246a320c15f123baa9f8cc986f8b3151b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_efe0d6a1c469ab24504892c5086306a8e3e86d09.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\loicc\.android\build-cache\6a25005028dae2a4572f45b0549e73a646f94cfc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_8a023c6d93c4e6493b9cc4b502f43567ce98eb27.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\loicc\.android\build-cache\9bc2cd88c9660f1a4a52adcffd063b8e615899e7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="D:\loicc\Documents\gsb\Gsb-App\app\build\intermediates\pre-dexed\debug\classes_ef1882339c46ea568a625162177f55ca7a7e1adc.jar" />
     </item>
 
 </items>

@@ -68,7 +68,6 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
     String contrerecup;
     String prixrecup;
 
-
     Button supp;
 
     private SimpleCursorAdapter myAdapter;
@@ -85,7 +84,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
         final String[] from = new String[]{"nom"};
         final int[] to = new int[]{android.R.id.text1};
 
-        TabHost host = (TabHost) findViewById(tabHost);
+        final TabHost host = (TabHost) findViewById(tabHost);
         host.setup();
 
         //Element pour la carte de visite
@@ -122,6 +121,18 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
         host.addTab(spec);
 
         supp = (Button) findViewById(R.id.suppress);
+
+        setTabColor(host);
+
+        host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+
+            @Override
+            public void onTabChanged(String arg0) {
+
+                setTabColor(host);
+            }
+        });
+
 
         supp.setOnClickListener(new View.OnClickListener() {
 
@@ -172,6 +183,18 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    public static void setTabColor(TabHost tabhost) {
+
+        for (int i = 0; i < tabhost.getTabWidget().getChildCount(); i++) {
+            tabhost.getTabWidget().getChildAt(i)
+                    .setBackgroundResource(R.drawable.tabwidget); // unselected
+        }
+        tabhost.getTabWidget().setCurrentTab(0);
+        tabhost.getTabWidget().getChildAt(tabhost.getCurrentTab())
+                .setBackgroundResource(R.drawable.tabwidgetselected); // selected
 
     }
 

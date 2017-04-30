@@ -28,6 +28,8 @@ public class Event implements Parcelable {
     private int duration;
     private DateManager mDateManager;
 
+    protected static String event_id;
+
 
     public Event(int id, int owner_id, String title, String details,
                  String location, long start_timestamp, int duration) {
@@ -155,6 +157,7 @@ public class Event implements Parcelable {
 
 
     public static class EventHash {
+
         public static final String KEY_ID = "id";
         public static final String KEY_OWNER_ID = "owner_id";
         public static final String KEY_TITLE = "event";
@@ -179,6 +182,7 @@ public class Event implements Parcelable {
             eventHash.put(KEY_TIME, event.getTimeString());
             eventHash.put(KEY_DATE, event.getDateString());
             eventHash.put(KEY_DATE_TIME, event.getDateTimeString());
+
             return eventHash;
         }
 
@@ -190,6 +194,7 @@ public class Event implements Parcelable {
             String details = eventHash.get(KEY_DETAILS);
             String location = eventHash.get(KEY_LOCATION);
             Long start_timestamp = Long.parseLong(eventHash.get(KEY_START_TIMESTAMP));
+
 
             return new Event(id, owner_id, title, details,
                     location, start_timestamp, duration);

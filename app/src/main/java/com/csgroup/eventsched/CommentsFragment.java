@@ -88,7 +88,7 @@ public class CommentsFragment extends Fragment implements TaskProvider {
             public void onClick(View v) {
                 String commentBody = etCommentbody.getText().toString();
                 if (commentBody.isEmpty()) {
-                    Toast.makeText(mActivity, "Please Enter a Comment", Toast.LENGTH_SHORT)
+                    Toast.makeText(mActivity, "Veuillez-Entrer un commentaire !", Toast.LENGTH_SHORT)
                             .show();
                     return;
                 }
@@ -238,7 +238,7 @@ public class CommentsFragment extends Fragment implements TaskProvider {
                 try {
                     Comment comment = JsonParser.parseAddComment(jsonStr);
                     if (comment != null) {
-                        Toast.makeText(mActivity, "Comment Posted", Toast.LENGTH_SHORT)
+                        Toast.makeText(mActivity, "Commentaire posté !", Toast.LENGTH_SHORT)
                                 .show();
                         CommentsFragment.this.commentsList.add(0, comment);
                         CommentsFragment.this.updateComments();

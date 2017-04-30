@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -13,17 +13,20 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
 
         <LinearLayout
+            android:paddingBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
+                android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Entrez les informations" />
+                android:text="Entrez les informations : " />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -159,6 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:paddingBottom="20dp"
                 android:orientation="horizontal"
                 android:weightSum="100">
 
@@ -174,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
                     android:layout_weight="30"
-                    android:background="#33FF66"
+                    android:background="@drawable/ultrarounded_validbutton"
                     android:text="Créer"
                     android:textColor="#ffffff" />
 
@@ -183,7 +187,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
-                    android:background="#E74C3C"
+                    android:background="@drawable/ultrarounded_suppbutton"
                     android:text="Annuler"
                     android:textColor="#ffffff" />
 
