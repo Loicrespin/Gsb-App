@@ -53,7 +53,6 @@ public class EventsFragment extends Fragment {
 
         return rootView;
 
-
     }
 
     @Override

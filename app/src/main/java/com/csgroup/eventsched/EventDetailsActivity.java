@@ -127,7 +127,7 @@ public class EventDetailsActivity extends MenuActivity {
 
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/deleteEvent.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://lcworks.ovh/eventsched/v1/deleteEvent.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -160,12 +160,12 @@ public class EventDetailsActivity extends MenuActivity {
         queue.add(sr);
     }
 
-    /** Classe pour ajouter echantillon **/
+    /** Classe pour supprimer commentaires **/
     public static void postDeleteComment(Context context, final int event_id){
 
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/deleteComment.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://lcworks.ovh/eventsched/v1/deleteComment.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

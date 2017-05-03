@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class HTTPManager {
 
 
-    private final String BASE_URL = "http://10.0.2.2:80/eventsched/v1/";
+    private final String BASE_URL = "http://lcworks.ovh/eventsched/v1/";
     private final String METHOD_POST = "POST";
     private final String METHOD_GET = "GET";
 

@@ -314,7 +314,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/spinner.php");
+                HttpPost httppost = new HttpPost("http://lcworks.ovh/eventsched/v1/spinner.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -356,7 +356,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             /** For Spinner MEdic **/
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/medicament.php");
+                HttpPost httppost = new HttpPost("http://lcworks.ovh/eventsched/v1/medicament.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -401,7 +401,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             /** For Spinner MEdic **/
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/medicament.php");
+                HttpPost httppost = new HttpPost("http://lcworks.ovh/eventsched/v1/medicament.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -566,7 +566,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/compterendu.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://lcworks.ovh/eventsched/v1/compterendu.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -608,7 +608,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/addechantillon.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://lcworks.ovh/eventsched/v1/addechantillon.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

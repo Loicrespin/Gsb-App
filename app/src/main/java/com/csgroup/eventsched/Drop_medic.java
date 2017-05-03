@@ -23,7 +23,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Classe pour ajouter echantillon **/
+/** Classe pour drop medic **/
 public class Drop_medic extends AsyncTask<String, String, String> {
 
     @Override
@@ -36,7 +36,7 @@ public class Drop_medic extends AsyncTask<String, String, String> {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://172.20.10.3:80/eventsched/v1/deleteMedic.php");
+            HttpPost httpPost = new HttpPost("http://lcworks.ovh/eventsched/v1/deleteMedic.php");
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
             HttpResponse response = httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();
