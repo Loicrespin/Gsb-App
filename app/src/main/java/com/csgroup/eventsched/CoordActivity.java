@@ -63,6 +63,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     TextView VILLE = null;
     TextView PORT = null;
     TextView TEL = null;
+    TextView MAIL = null;
     TextView COEFF = null;
     TextView LIEUX = null;
 
@@ -73,6 +74,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     String villerecup;
     String portrecup;
     String telrecup = "";
+    String mailrecup = "";
     String coeffrecup;
     String lieurecup;
 
@@ -97,6 +99,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         VILLE = (TextView) findViewById(R.id.ville);
         PORT = (TextView) findViewById(R.id.port);
         TEL = (TextView) findViewById(R.id.tel);
+        MAIL = (TextView) findViewById(R.id.mail);
         COEFF = (TextView) findViewById(R.id.coeff);
         LIEUX = (TextView) findViewById(R.id.lieux);
 
@@ -129,14 +132,14 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                 dialog.setContentView(R.layout.dialog_contact);
 
                 ImageButton newcall = (ImageButton) dialog.findViewById(R.id.phoner);
+                final ImageButton newmail = (ImageButton) dialog.findViewById(R.id.mail);
 
                 /** MAke a call **/
                 newcall.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        if(telrecup == "")
-                        {
+                        if (telrecup == "") {
                             Toast.makeText(context, "Veuillez chercher un contact", Toast.LENGTH_SHORT).show();
 
                         } else {
@@ -145,10 +148,30 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                             startActivity(intent);
 
                         }
-
                     }
 
                 });
+
+                newmail.setOnClickListener(new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View v) {
+
+                                                   Intent i = new Intent(Intent.ACTION_SEND);
+                                                   i.setType("message/rfc822");
+                                                   i.putExtra(Intent.EXTRA_EMAIL  , new String[]{mailrecup});
+                                                   i.putExtra(Intent.EXTRA_SUBJECT, "Compte rendu");
+                                                   i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+                                                   try {
+                                                       startActivity(Intent.createChooser(i, "Send mail..."));
+                                                   } catch (android.content.ActivityNotFoundException ex) {
+                                                       Toast.makeText(CoordActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                                                   }
+
+
+                                               }
+
+                                           });
+
 
                 Button dialogButton = (Button) dialog.findViewById(R.id.cancel);
                 // if button is clicked, close the custom dialog
@@ -230,6 +253,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                     VILLE.setText(villerecup);
                     PORT.setText(portrecup);
                     TEL.setText(telrecup);
+                    MAIL.setText(mailrecup);
                     COEFF.setText(coeffrecup);
                     LIEUX.setText(lieurecup);
 
@@ -300,14 +324,19 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                                 telrecup = strArrData[j];
                             }
 
+                            for (int j = 0; j <= i+6; j++){
+
+                                mailrecup = strArrData[j];
+                            }
+
                             //Recupération du coeff
-                            for (int j = 0; j <= i+6; j++)
+                            for (int j = 0; j <= i+7; j++)
                             {
                                 coeffrecup = strArrData[j];
                             }
 
                             //Récupération du lieux
-                            for (int j = 0; j <= i+7; j++)
+                            for (int j = 0; j <= i+8; j++)
                             {
                                 lieurecup = strArrData[j];
                             }
@@ -511,6 +540,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                         dataList.add(json_data.getString("ville"));
                         dataList.add(json_data.getString("port"));
                         dataList.add(json_data.getString("tel"));
+                        dataList.add(json_data.getString("mail"));
                         dataList.add(json_data.getString("coeff"));
                         dataList.add(json_data.getString("lieux"));
                     }

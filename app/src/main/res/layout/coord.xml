@@ -97,6 +97,13 @@
                     android:textColor="#000000"
                     android:textSize="18dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mail"
+                    android:textColor="#000000"
+                    android:textSize="18dp"/>
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -164,7 +171,7 @@
             <!-- Layout de lieux et coeff -->
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="210dp"
                 android:layout_marginTop="190dp">
@@ -184,12 +191,21 @@
                     android:textColor="#000000"
                     android:textSize="17dp"/>
 
+                <TextView
+                    android:id="@+id/mail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:textColor="#000000"
+                    android:textSize="17dp"/>
+
+
             </RelativeLayout>
 
             <!-- Layout de lieux et coeff -->
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="210dp"
                 android:layout_marginTop="252dp">
@@ -198,6 +214,7 @@
                     android:id="@+id/coeff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
                     android:textColor="#000000"
                     android:textSize="17dp"/>
 
@@ -205,7 +222,7 @@
                     android:id="@+id/lieux"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="45dp"
                     android:textColor="#000000"
                     android:textSize="17dp"/>
 

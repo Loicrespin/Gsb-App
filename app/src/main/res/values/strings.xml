@@ -34,6 +34,7 @@
     <string name="adresse">Adresse : </string>
     <string name="port">Port : </string>
     <string name="tel">Tel : </string>
+    <string name="mail">Mail : </string>
     <string name="ville">Ville : </string>
     <string name="coeff">Coefficient : </string>
     <string name="lieux">Lieux exercice : </string>

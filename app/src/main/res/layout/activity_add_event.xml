@@ -88,6 +88,12 @@
                         android:ems="10"
                         android:hint="Minutes"
                         android:inputType="number" />
+
+
+
+
+
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -150,7 +156,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@id/btnFilterOptions"
                         android:layout_below="@id/btnFilterOptions"
-
                         android:layout_marginLeft="-100dp"
                         android:layout_marginTop="-48dp"
                         android:text="Rafraichir"/>
@@ -159,6 +164,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_gravity="center"
+                android:layout_marginLeft="45dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -174,25 +181,23 @@
 
                 <Button
                     android:id="@+id/btnEventCreate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:layout_weight="30"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="50dp"
                     android:background="@drawable/ultrarounded_validbutton"
                     android:text="Créer"
                     android:textColor="#ffffff" />
 
                 <Button
                     android:id="@+id/btnEventCancel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_width="72dp"
+                    android:layout_height="70dp"
                     android:background="@drawable/ultrarounded_suppbutton"
                     android:text="Annuler"
                     android:textColor="#ffffff" />
 
+                </LinearLayout>
 
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
