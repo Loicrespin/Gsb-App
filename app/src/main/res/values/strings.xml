@@ -58,5 +58,6 @@
     <string name="carac">380 caractère restant</string>
 
     <string name="Medicaments">Médicaments</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

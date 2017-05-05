@@ -43,6 +43,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CoordActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -54,6 +55,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     SearchView searchView = null;
 
     Button contact;
+    Button navigation;
     final Context context = this;
 
     //VISIT CARD
@@ -70,9 +72,9 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     //TRANSFERT DE DONNEES
     String nomrecup;
     String prenomrecup;
-    String adresserecup;
-    String villerecup;
-    String portrecup;
+    String adresserecup = "";
+    String villerecup = "";
+    String portrecup = "";
     String telrecup = "";
     String mailrecup = "";
     String coeffrecup;
@@ -104,6 +106,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         LIEUX = (TextView) findViewById(R.id.lieux);
 
         contact = (Button) findViewById(R.id.contact);
+        navigation = (Button) findViewById(R.id.naviagte);
 
         // setup SimpleCursorAdapter
         myAdapter = new SimpleCursorAdapter(CoordActivity.this, android.R.layout.simple_spinner_dropdown_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
@@ -133,6 +136,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
                 ImageButton newcall = (ImageButton) dialog.findViewById(R.id.phoner);
                 final ImageButton newmail = (ImageButton) dialog.findViewById(R.id.mail);
+                final ImageButton newsms = (ImageButton) dialog.findViewById(R.id.sms);
 
                 /** MAke a call **/
                 newcall.setOnClickListener(new View.OnClickListener() {
@@ -156,21 +160,49 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                                                @Override
                                                public void onClick(View v) {
 
-                                                   Intent i = new Intent(Intent.ACTION_SEND);
-                                                   i.setType("message/rfc822");
-                                                   i.putExtra(Intent.EXTRA_EMAIL  , new String[]{mailrecup});
-                                                   i.putExtra(Intent.EXTRA_SUBJECT, "Compte rendu");
-                                                   i.putExtra(Intent.EXTRA_TEXT   , "body of email");
-                                                   try {
-                                                       startActivity(Intent.createChooser(i, "Send mail..."));
-                                                   } catch (android.content.ActivityNotFoundException ex) {
-                                                       Toast.makeText(CoordActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-                                                   }
+                                                   if (mailrecup == "") {
 
+                                                       Toast.makeText(context, "Veuillez chercher un contact", Toast.LENGTH_SHORT).show();
+
+                                                   } else {
+
+                                                       Intent i = new Intent(Intent.ACTION_SEND);
+                                                       i.setType("message/rfc822");
+                                                       i.putExtra(Intent.EXTRA_EMAIL, new String[]{mailrecup});
+                                                       i.putExtra(Intent.EXTRA_SUBJECT, "Compte rendu");
+                                                       i.putExtra(Intent.EXTRA_TEXT, "body of email");
+                                                       try {
+                                                           startActivity(Intent.createChooser(i, "Send mail..."));
+                                                       } catch (android.content.ActivityNotFoundException ex) {
+                                                           Toast.makeText(CoordActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                                                       }
+
+                                                   }
 
                                                }
 
                                            });
+
+                newsms.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (portrecup == "") {
+
+                            Toast.makeText(context, "Veuillez chercher un contact", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                            sendIntent.putExtra("address", portrecup);
+                            sendIntent.setData(Uri.parse("sms:"));
+                            startActivity(sendIntent);
+
+                        }
+
+                    }
+
+                });
 
 
                 Button dialogButton = (Button) dialog.findViewById(R.id.cancel);
@@ -200,7 +232,28 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
             return;
         }
 
+        /** MAke a naviagtion **/
+        navigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (adresserecup == "" && villerecup == "") {
+
+                    Toast.makeText(context, "Veuillez chercher un contact", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    String uri = String.format(Locale.ENGLISH, "geo:0,0?q=" + adresserecup + " " + villerecup);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    context.startActivity(intent);
+                    onPause();
+
+                }
+
+
+            }
+
+        });
 
     }
 

@@ -208,10 +208,6 @@
                     android:id="@+id/comments_fragment"
                     tools:layout="@layout/list_item_comment" />
 
-
-
-
-
         </LinearLayout>
     </ScrollView>
 

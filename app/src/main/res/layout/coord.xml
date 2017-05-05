@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
+    android:paddingLeft="5dp"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context=".CoordActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
-
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -173,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:layout_marginLeft="210dp"
+                android:layout_marginLeft="200dp"
                 android:layout_marginTop="190dp">
 
                 <TextView
@@ -208,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="210dp"
-                android:layout_marginTop="252dp">
+                android:layout_marginTop="255dp">
 
                 <TextView
                     android:id="@+id/coeff"
@@ -228,16 +230,28 @@
 
             </RelativeLayout>
 
+
         </RelativeLayout>
 
         <Button
             android:id="@+id/contact"
             android:background="@drawable/rounded_validbutton"
             android:layout_gravity="center"
-            android:text="Contact"
+            android:text="Contacter"
             android:textSize="15dp"
             android:textColor="#ffffff"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="250dp"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/naviagte"
+            android:background="@drawable/rounded_navigbutton"
+            android:layout_gravity="center"
+            android:text="Navigation"
+            android:textSize="15dp"
+            android:textColor="#ffffff"
             android:layout_marginBottom="20dp"
             android:layout_width="250dp"
             android:layout_height="30dp" />
@@ -245,5 +259,6 @@
     </LinearLayout>
 
 
+    </ScrollView>
 
 </LinearLayout>
