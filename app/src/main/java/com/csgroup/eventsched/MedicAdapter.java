@@ -87,9 +87,20 @@ public class MedicAdapter extends ArrayAdapter<Medics> {
             @Override
             public void onClick(View v) {
 
-                remove(medics);
-                CompteRendu.listeqty.remove(position);
-                CompteRendu.listeidmedic.remove(position);
+                if(CompteRendu.listeqty.isEmpty())
+                {
+                    CompteRendu.listeidmedic.remove(position);
+                    remove(medics);
+
+                } else {
+
+                    CompteRendu.listeqty.remove(position);
+                    CompteRendu.listeidmedic.remove(position);
+                    remove(medics);
+                }
+
+
+
 
             }
         });
