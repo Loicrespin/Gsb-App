@@ -36,7 +36,7 @@ public class Drop_medic extends AsyncTask<String, String, String> {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://lcworks.ovh/eventsched/v1/deleteMedic.php");
+            HttpPost httpPost = new HttpPost("http://10.0.2.2:80/eventsched/v1/deleteMedic.php");
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
             HttpResponse response = httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();

@@ -82,6 +82,8 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
     private SimpleCursorAdapter myAdapter;
     private String[] strArrData = {"No Suggestions"};
+    private String[] search = {"No Suggestions"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,7 +172,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                                                        i.setType("message/rfc822");
                                                        i.putExtra(Intent.EXTRA_EMAIL, new String[]{mailrecup});
                                                        i.putExtra(Intent.EXTRA_SUBJECT, "Compte rendu");
-                                                       i.putExtra(Intent.EXTRA_TEXT, "body of email");
+                                                       i.putExtra(Intent.EXTRA_TEXT, "");
                                                        try {
                                                            startActivity(Intent.createChooser(i, "Send mail..."));
                                                        } catch (android.content.ActivityNotFoundException ex) {
@@ -332,9 +334,9 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                     // Filter data
                     final MatrixCursor mc = new MatrixCursor(new String[]{BaseColumns._ID, "id"});
 
-                    for (int i=0; i<strArrData.length; i++) {
-                        if (strArrData[i].toLowerCase().startsWith(s.toLowerCase())) {
-                            mc.addRow(new Object[]{i, strArrData[i]});
+                    for (int i=0; i<search.length; i++) {
+                        if (search[i].toLowerCase().startsWith(s.toLowerCase())) {
+                            mc.addRow(new Object[]{i, search[i]});
                         }
                     }
 
@@ -504,7 +506,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
             try {
 
                 // Enter URL address where your php file resides or your JSON file address
-                url = new URL("http://lcworks.ovh/eventsched/v1/spinner.php");
+                url = new URL("http://10.0.2.2:80/eventsched/v1/spinner.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -569,6 +571,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
             //this method will be running on UI thread
             ArrayList<String> dataList = new ArrayList<String>();
+            ArrayList<String> dataList2 = new ArrayList<String>();
             pdLoading.dismiss();
 
 
@@ -588,7 +591,9 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                         JSONObject json_data = jArray.getJSONObject(i);
                         dataList.add(json_data.getString("id"));
                         dataList.add(json_data.getString("nom"));
+                        dataList2.add(json_data.getString("nom"));
                         dataList.add(json_data.getString("prenom"));
+                        dataList2.add(json_data.getString("prenom"));
                         dataList.add(json_data.getString("adresse"));
                         dataList.add(json_data.getString("ville"));
                         dataList.add(json_data.getString("port"));
@@ -600,6 +605,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
 
                     strArrData = dataList.toArray(new String[dataList.size()]);
+                    search = dataList2.toArray(new String[dataList2.size()]);
 
 
                 } catch (JSONException e10) {

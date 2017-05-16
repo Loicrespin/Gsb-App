@@ -72,6 +72,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
 
     private SimpleCursorAdapter myAdapter;
     private String[] strArrData = {"No Suggestions"};
+    private String[] search = {"No suggestion"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,15 +187,24 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
 
     }
 
-    public static void setTabColor(TabHost tabhost) {
+    public void setTabColor(TabHost tabhost) {
 
+        //Changer la couleur du tabwidget au click
         for (int i = 0; i < tabhost.getTabWidget().getChildCount(); i++) {
             tabhost.getTabWidget().getChildAt(i)
-                    .setBackgroundResource(R.drawable.tabwidget); // unselected
+                    .setBackgroundResource(R.drawable.tabwidget);// unselected
+
+            TextView tv = (TextView) tabhost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setTextColor(getResources().getColor(R.color.black));
+
         }
         tabhost.getTabWidget().setCurrentTab(0);
         tabhost.getTabWidget().getChildAt(tabhost.getCurrentTab())
                 .setBackgroundResource(R.drawable.tabwidgetselected); // selected
+
+
+        TextView tv = (TextView) tabhost.getTabWidget().getChildAt(tabhost.getCurrentTab()).findViewById(android.R.id.title);
+        tv.setTextColor(getResources().getColor(R.color.red));
 
     }
 
@@ -265,9 +275,9 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
                     // Filter data
                     final MatrixCursor mc = new MatrixCursor(new String[]{BaseColumns._ID, "nom"});
 
-                    for (int i = 0; i < strArrData.length; i++) {
-                        if (strArrData[i].toLowerCase().startsWith(s.toLowerCase())) {
-                            mc.addRow(new Object[]{i, strArrData[i]});
+                    for (int i = 0; i < search.length; i++) {
+                        if (search[i].toLowerCase().startsWith(s.toLowerCase())) {
+                            mc.addRow(new Object[]{i, search[i]});
                         }
                     }
 
@@ -416,7 +426,7 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
             try {
 
                 // Enter URL address where your php file resides or your JSON file address
-                url = new URL("http://lcworks.ovh/eventsched/v1/medicament.php");
+                url = new URL("http://10.0.2.2:80/eventsched/v1/medicament.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -480,6 +490,8 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
 
             //this method will be running on UI thread
             ArrayList<String> dataList = new ArrayList<String>();
+            ArrayList<String> dataList2 = new ArrayList<String>();
+
             pdLoading.dismiss();
 
 
@@ -498,15 +510,18 @@ public class Medicaments extends AppCompatActivity implements NavigationView.OnN
                         JSONObject json_data = jArray.getJSONObject(i);
                         dataList.add(json_data.getString("id"));
                         dataList.add(json_data.getString("nom"));
+                        dataList2.add(json_data.getString("nom"));
                         dataList.add(json_data.getString("famille"));
                         dataList.add(json_data.getString("composition"));
                         dataList.add(json_data.getString("effet_indesirable"));
                         dataList.add(json_data.getString("contre_indication"));
                         dataList.add(json_data.getString("prix"));
+
                     }
 
 
                     strArrData = dataList.toArray(new String[dataList.size()]);
+                    search = dataList2.toArray(new String[dataList2.size()]);
 
 
                 } catch (JSONException e10) {

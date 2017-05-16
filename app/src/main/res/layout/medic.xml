@@ -220,6 +220,7 @@
     </RelativeLayout>
 
       <Button
+          android:visibility="invisible"
           android:id="@+id/suppress"
           android:layout_marginTop="20dp"
           android:layout_marginBottom="20dp"

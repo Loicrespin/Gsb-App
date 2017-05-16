@@ -566,7 +566,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,"http://lcworks.ovh/eventsched/v1/compterendu.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/compterendu.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -608,7 +608,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,"http://lcworks.ovh/eventsched/v1/addechantillon.php", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://10.0.2.2:80/eventsched/v1/addechantillon.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

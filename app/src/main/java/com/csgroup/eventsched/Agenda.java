@@ -54,7 +54,7 @@ public class Agenda extends MenuActivity
         });
 
 
-        // start service that fetches new events and notifies user
+        // Activation des tâches en arrière plan pour récupérer les événement
         this.StartBackgroundService();
 
         //commande d'affichage du menu
@@ -111,7 +111,8 @@ public class Agenda extends MenuActivity
             }
         });
 
-        dialog.show();
+        //dialog.show();
+        finish();
 
     }
 

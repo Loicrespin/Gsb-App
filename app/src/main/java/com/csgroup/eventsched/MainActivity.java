@@ -93,8 +93,9 @@ public class MainActivity extends ActionBarActivity {
 
             System.out.println("ID USER : " + id);
 
-            Toast.makeText(MainActivity.this, "Bienvenue "  + silent +  " !", Toast.LENGTH_LONG)
-                    .show();
+            // Pour afficher le toast de bienvenue lorsque l'utilisateur à cocher "se souvenir de moi " :
+          /**  Toast.makeText(MainActivity.this, "Bienvenue "  + silent +  " !", Toast.LENGTH_LONG)
+                    .show(); **/
 
             startActivity(new Intent(this, Agenda.class));
             finish();
