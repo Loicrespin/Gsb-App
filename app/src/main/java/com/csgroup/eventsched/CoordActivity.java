@@ -59,6 +59,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     final Context context = this;
 
     //VISIT CARD
+    TextView GENDER = null;
     TextView NOM = null;
     TextView PRENOM = null;
     TextView ADRESSE = null;
@@ -70,6 +71,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
     TextView LIEUX = null;
 
     //TRANSFERT DE DONNEES
+    String genderrecup;
     String nomrecup;
     String prenomrecup;
     String adresserecup = "";
@@ -97,6 +99,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         final int[] to = new int[]{android.R.id.text1};
 
         //Element pour la carte de visite
+        GENDER = (TextView) findViewById(R.id.gender);
         NOM = (TextView) findViewById(R.id.nom);
         PRENOM = (TextView) findViewById(R.id.prenom);
         ADRESSE = (TextView) findViewById(R.id.adresse);
@@ -202,6 +205,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
 
                         }
 
+
                     }
 
                 });
@@ -302,6 +306,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                     cursor.moveToPosition(position);
                     searchView.setQuery(cursor.getString(cursor.getColumnIndex("id")),false);
 
+                    GENDER.setText(genderrecup);
                     NOM.setText(nomrecup);
                     PRENOM.setText(prenomrecup);
                     ADRESSE.setText(adresserecup);
@@ -343,55 +348,58 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                     for (int i=0; i<strArrData.length; i++) {
                         if (strArrData[i].toLowerCase().startsWith(s.toLowerCase())) {
 
+
+
                             //récupération du nom
-                            for (int j = 0; j <= i; j++)
+                            for (int j = 0; j <= i+1; j++)
                             {
                                 nomrecup = strArrData[j];
                             }
 
+
                             //récupération du prénom
-                            for (int j = 0; j <= i+1; j++)
+                            for (int j = 0; j <= i+2; j++)
                             {
                                 prenomrecup = strArrData[j];
                             }
 
                             //récupération de l'adresse
-                            for (int j = 0; j <= i+2; j++)
+                            for (int j = 0; j <= i+3; j++)
                             {
                                 adresserecup = strArrData[j];
                             }
 
                             //récupération de la ville
-                            for (int j = 0; j <= i+3; j++)
+                            for (int j = 0; j <= i+4; j++)
                             {
                                 villerecup = strArrData[j];
                             }
 
                             //récupération du port
-                            for (int j = 0; j <= i+4; j++)
+                            for (int j = 0; j <= i+5; j++)
                             {
                                 portrecup = strArrData[j];
                             }
 
                             //récupération du tel
-                            for (int j = 0; j <= i+5; j++)
+                            for (int j = 0; j <= i+6; j++)
                             {
                                 telrecup = strArrData[j];
                             }
 
-                            for (int j = 0; j <= i+6; j++){
+                            for (int j = 0; j <= i+7; j++){
 
                                 mailrecup = strArrData[j];
                             }
 
                             //Recupération du coeff
-                            for (int j = 0; j <= i+7; j++)
+                            for (int j = 0; j <= i+8; j++)
                             {
                                 coeffrecup = strArrData[j];
                             }
 
                             //Récupération du lieux
-                            for (int j = 0; j <= i+8; j++)
+                            for (int j = 0; j <= i+9; j++)
                             {
                                 lieurecup = strArrData[j];
                             }
@@ -601,11 +609,13 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
                         dataList.add(json_data.getString("mail"));
                         dataList.add(json_data.getString("coeff"));
                         dataList.add(json_data.getString("lieux"));
+                        dataList.add(json_data.getString("gender"));
                     }
 
 
                     strArrData = dataList.toArray(new String[dataList.size()]);
                     search = dataList2.toArray(new String[dataList2.size()]);
+
 
 
                 } catch (JSONException e10) {
@@ -621,5 +631,7 @@ public class CoordActivity extends AppCompatActivity implements NavigationView.O
         }
 
     }
+
+    //coller fonction supression
 }
 

@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -32,7 +32,7 @@
                 android:paddingBottom="20dp"
                 android:paddingLeft="50dp"
                 android:paddingTop="20dp"
-                android:text="Coordonées Praticien"
+                android:text="Coordonnées Praticien"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ECF0F1"
                 android:textSize="15sp"
@@ -51,8 +51,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="65dp"
+                android:paddingTop="5dp"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Civilité : "
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:layout_marginBottom="10dp"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,6 +87,7 @@
                     android:textSize="18dp"/>
 
                 <TextView
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ville"
@@ -110,7 +120,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="30dp"
                     android:text="@string/coeff"
                     android:textColor="#000000"
                     android:textSize="18dp"/>
@@ -124,11 +134,27 @@
 
             </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="210dp"
+            android:layout_marginTop="70dp">
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="17dp"/>
+
+
+        </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="210dp"
-                android:layout_marginTop="65dp">
+                android:layout_marginTop="110dp">
 
                 <TextView
                     android:id="@+id/nom"
@@ -151,7 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="210dp"
-                android:layout_marginTop="125dp">
+                android:layout_marginTop="165dp">
 
                 <TextView
                     android:id="@+id/adresse"
@@ -164,7 +190,7 @@
                     android:id="@+id/ville"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:textColor="#000000"
                     android:textSize="17dp"/>
 
@@ -175,11 +201,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="190dp">
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="235dp">
 
                 <TextView
                     android:id="@+id/port"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
@@ -187,6 +214,7 @@
 
                 <TextView
                     android:id="@+id/tel"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
@@ -210,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="210dp"
-                android:layout_marginTop="255dp">
+                android:layout_marginTop="315dp">
 
                 <TextView
                     android:id="@+id/coeff"
@@ -234,7 +262,7 @@
         </RelativeLayout>
 
         <Button
-            android:visibility="invisible"
+            android:visibility="visible"
             android:id="@+id/contact"
             android:background="@drawable/rounded_validbutton"
             android:layout_gravity="center"
@@ -247,7 +275,7 @@
             android:layout_height="30dp" />
 
         <Button
-            android:visibility="invisible"
+            android:visibility="visible"
             android:id="@+id/naviagte"
             android:background="@drawable/rounded_navigbutton"
             android:layout_gravity="center"

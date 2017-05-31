@@ -314,7 +314,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://lcworks.ovh/eventsched/v1/spinner.php");
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/spinner.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -342,7 +342,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
                     JSONObject jsonObject = jArray.getJSONObject(i);
 
                     /** add praticien in array list **/
-                    String nomPrenom = jsonObject.getString("nom") + " " + jsonObject.getString("prenom");
+                    String nomPrenom = jsonObject.getString("gender") + "." + " " + jsonObject.getString("nom") + " " + jsonObject.getString("prenom");
                     String idp = jsonObject.getString("id");
 
                     list.add(nomPrenom);
@@ -356,7 +356,7 @@ public class CompteRendu extends AppCompatActivity implements NavigationView.OnN
             /** For Spinner MEdic **/
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://lcworks.ovh/eventsched/v1/medicament.php");
+                HttpPost httppost = new HttpPost("http://10.0.2.2:80/eventsched/v1/medicament.php");
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.

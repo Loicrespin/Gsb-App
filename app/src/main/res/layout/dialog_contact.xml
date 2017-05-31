@@ -22,12 +22,13 @@
         android:background="#ffffff"
         android:src="@drawable/phone"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="-60dp"
+        android:layout_marginLeft="-50dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp" />
 
 
     <ImageButton
+        android:visibility="visible"
         android:id="@+id/sms"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -35,12 +36,13 @@
         android:src="@drawable/sms"
         android:background="#ffffff"
         android:layout_marginTop="-55dp"
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif" />
 
     <ImageButton
+        android:visibility="invisible"
         android:id="@+id/mail"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
